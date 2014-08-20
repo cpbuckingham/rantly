@@ -17,6 +17,7 @@ class RegistrationsController < ApplicationController
     )
     if @user.save
       redirect_to root_path
+      flash[:notice] = "Thank you for registering"
     else
       flash[:notice] = "Your account could not be created"
       render :new
