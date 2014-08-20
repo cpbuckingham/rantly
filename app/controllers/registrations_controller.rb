@@ -8,13 +8,17 @@ class RegistrationsController < ApplicationController
 
   def create
     @user = User.new(
-      name: params[:user][:name],
-      password: params[:user][:password]
+      username: params[:user][:username],
+      password: params[:user][:password],
+      first_name: params[:user][:first_name],
+      last_name: params[:user][:last_name],
+      bio: params[:user][:bio],
+      rant_frequency: params[:user][:rant_frequency]
     )
-
     if @user.save
       redirect_to root_path
     else
+      flash[:notice] = "Your account could not be created"
       render :new
     end
   end

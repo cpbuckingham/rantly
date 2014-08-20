@@ -11,19 +11,24 @@
 <header>
   <div class="container">
     <div id="logo">
-      <%= link_to "Login", root_path, class: "button-link" %>
+      <%= link_to "Login", signin_path, class: "button-link" %>
       <%= link_to "Join", new_registration_path, class: "button" %>
     </div>
-    <%= "Rant.ly" %>
+    <%= link_to "Rant.ly", root_path, class: "button-link" %>
   </div>
 </header>
+<br>
+<br>
 </body>
 </div>
 <% if current_user %>
   <div class="logout">
-    <%= current_user.email %> |
+    <%= current_user.username %> |
     <%= link_to "Logout", signout_path %>
   </div>
+<br>
+  <br>
+  <br>
 <% end %>
 <main>
   <div class="container">

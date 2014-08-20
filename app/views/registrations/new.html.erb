@@ -1,23 +1,47 @@
-<%= form_for @user, url: signin_path, html: { class: "signin-form" } do |f| %>
+<%= form_for @user, url: registrations_path, html: {class: "registrations-form"} do |f| %>
   <% f.object.errors.full_messages.each do |error| %>
     <div class="errors">
-      <br>
       <%= error %>
     </div>
   <% end %>
   <div>
-    <%= f.label :email %>
-    <%= f.email_field :email, autofocus: true %>
+    <%= f.label :username %>
+    <%= f.text_field :username %>
   </div>
+  <br>
   <div>
     <%= f.label :password %>
-    <%= f.password_field :password %>
+    <%= f.text_field :password %>
+  </div>
+  <br>
+  <div>
+    <%= f.label :first_name %>
+    <%= f.text_field :first_name %>
+  </div>
+  <br>
+  <div>
+    <%= f.label :last_name %>
+    <%= f.text_field :last_name %>
+  </div>
+  <br>
+  <div>
+    <%= f.label :bio %>
+    <%= f.text_area :bio, :size => "30x10" %>
+  </div>
+  <br>
+  <%= "How often do you rant?" %>
+  <div>
+    <br>
+    <%= f.label :daily %>
+    <%= f.radio_button  :rant_frequency, :daily %>
+    <%= f.label :weekly %>
+    <%= f.radio_button  :rant_frequency, :weekly %>
+    <%= f.label :monthly %>
+    <%= f.radio_button  :rant_frequency, :monthly %>
   </div>
   <br>
   <div>
     <br>
-    <br>
-
-    <%= link_to "Join", new_registration_path, class: "button-link" %>
+    <%= f.submit "Register", class: "button" %>
   </div>
 <% end %>
