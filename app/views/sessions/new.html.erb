@@ -1,0 +1,20 @@
+<%= form_for @user, url: signin_path, html: { class: "signin-form" } do |f| %>
+  <% f.object.errors.full_messages.each do |error| %>
+    <div class="errors">
+      <%= error %>
+    </div>
+  <% end %>
+  <br>
+  <br>
+  <div>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+  <div>
+    <%= f.label :password %>
+    <%= f.text_field :password %>
+  </div>
+  <div>
+    <%= f.submit "Join" %>
+  </div>
+<% end %>

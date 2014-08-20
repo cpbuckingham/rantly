@@ -13,3 +13,68 @@
  *= require_tree .
  *= require_self
  */
+
+body {
+    font-family: Copperplate, "Copperplate Gothic Light", fantasy;
+}
+
+#logo {
+    float: right;
+}
+header {
+    font-size:30px;
+    border: 1px solid #ccc;
+    padding: .5em;
+    background: rgba(0, 0, 0, 0.74);
+}
+#home {
+    text-align: center;
+    font-size:30px;
+
+}
+#jeff {
+    position: relative;
+    float: left;
+}
+#para {
+    float: right;
+    position: relative;
+
+}
+.button-link {
+    font-size:15px;
+    padding: 4px;
+    margin-right:4px;
+    border: 1px solid black;
+    background: #e9e9e9;
+    text-decoration: none;
+    color:black;
+}
+.button {
+    font-size:30px;
+    padding: 4px;
+    margin-right:4px;
+    border: 1px solid black;
+    background: green;
+    text-decoration: none;
+    color:black;
+}
+.center {
+    text-align:center;
+    margin:0 auto;
+    margin-top:4rem;
+    width:40rem;
+}
+.promo {
+    background-color: #666666;
+    width: 100%;
+    height: 20rem;
+    position: absolute;
+    bottom: 0;
+}
+p {
+    color: white;
+    width:29rem;
+    text-align:left;
+    margin:0;
+}
