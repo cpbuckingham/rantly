@@ -1,0 +1,24 @@
+<h1>Edit rant</h1>
+<div class="errors">
+  <% if @rant.errors.any? %>
+    <% @rant.errors.messages[:title].each do |error| %>
+      <%= error %>
+    <% end %>
+  <% end %>
+</div>
+<br>
+<%= form_for @rant, url: edit_rant_path , html: {class: "edit_rant_form"} do |f| %>
+  <div>
+    <%= f.label :title %>
+    <br>
+    <%= f.text_field :title, autofocus: true, value: @rant.title %>
+    <br>
+    <%= f.label :content %>
+    <br>
+    <%= f.text_field :content, autofocus: true, value: @rant.content %>
+  </div>
+  <div>
+    <br>
+    <%= f.submit "Edit rant" %>
+  </div>
+<% end %>

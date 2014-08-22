@@ -22,10 +22,12 @@
 </body>
 </div>
 <div id="flash"><%= flash[:notice] %></div>
+<br>
 <% if current_user %>
   <div class="logout">
     <%= current_user.username %> |
-    <%= link_to "Logout", signout_path %>
+    <%= link_to "Edit", edit_registration_path(current_user.id), class: "button-link" %>
+    <%= link_to "Logout", signout_path, class: "button-link" %>
   </div>
 <br>
   <br>
