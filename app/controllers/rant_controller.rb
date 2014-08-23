@@ -27,8 +27,8 @@ class RantController < ApplicationController
   def update
     @rant = Rant.find(params[:id])
     if @rant.update(
-      name: params[:task_list][:name]
-    )
+      title: params[:title],
+      content: params[:content])
       flash[:notice] = "Your rant was successfully updated!"
       redirect_to root_path
     else

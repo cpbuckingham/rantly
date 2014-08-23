@@ -7,15 +7,15 @@
   <% end %>
 </div>
 <br>
-<%= form_for @rant, url: edit_rant_path , html: {class: "edit_rant_form"} do |f| %>
+<%= form_for @rant, url: rant_path, method: :patch, html: {class: "edit_rant_form"} do |f| %>
   <div>
     <%= f.label :title %>
     <br>
-    <%= f.text_field :title, autofocus: true, value: @rant.title %>
+    <%= f.text_field :title, value: @rant.title %>
     <br>
     <%= f.label :content %>
     <br>
-    <%= f.text_field :content, autofocus: true, value: @rant.content %>
+    <%= f.text_field :content, value: @rant.content %>
   </div>
   <div>
     <br>
