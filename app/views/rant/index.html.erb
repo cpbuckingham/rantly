@@ -2,14 +2,14 @@
   <h1>My Rants</h1>
 </div>
 <br>
-<%= link_to "create rant", new_rant_path %>
+<%= link_to "create rant", new_rant_path, class: "button-link" %>
 <br>
-<% @rant.each do |rant_list| %>
-<ul>
-      <li><%= rant_list.title %></li>
-      <%= link_to "delete", :method => :delete %>
-      <%= link_to "edit", edit_rant_path(rant_list) %>
-
-  <%= rant_list.content %>
-</ul>
-  <% end %>
+    <% @rant.each do |rant_list| %>
+      <ul>
+        <li><%= rant_list.title %>
+          <dt> <%= rant_list.content %></dt>
+        </li>
+          <%= link_to "edit", edit_rant_path(rant_list) %>
+          <%= button_to "delete", rant_path(rant_list), method: "delete" %>
+      </ul>
+    <% end %>

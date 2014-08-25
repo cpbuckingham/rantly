@@ -1,13 +1,13 @@
-<h1>Edit rant</h1>
+<h1>Create rant</h1>
 <div class="errors">
   <% if @rant.errors.any? %>
-    <% @rant.errors.messages[:title].each do |error| %>
+    <% @rant.errors.full_messages.each do |error| %>
       <%= error %>
     <% end %>
   <% end %>
 </div>
 <br>
-<%= form_for @rant, url: new_rant_path , html: {class: "create_rant_form"} do |f| %>
+<%= form_for @rant, url: rant_index_path, method: :create, html: {class: "create_rant_form"} do |f| %>
   <div>
     <%= f.label :title %>
     <br>
