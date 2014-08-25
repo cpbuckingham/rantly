@@ -9,7 +9,7 @@ class RantController < ApplicationController
   end
 
   def create
-    @rant = Rant.create(title: params[:rant][:title])
+    @rant = Rant.create(title: params[:rants][:title])
 
     if @rant.valid?
       flash[:notice] = "Rant created successfully!"
@@ -27,8 +27,8 @@ class RantController < ApplicationController
   def update
     @rant = Rant.find(params[:id])
     if @rant.update(
-      title: params[:title],
-      content: params[:content])
+      title: params[:rants][:title],
+      content: params[:rants][:content])
       flash[:notice] = "Your rant was successfully updated!"
       redirect_to root_path
     else
