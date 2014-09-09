@@ -7,7 +7,7 @@
   <% end %>
 </div>
 <br>
-<%= form_for @rant, url: rant_path, method: :patch, html: {class: "edit_rant_form"} do |f| %>
+<%= form_for @rant, url: edit_user_rant_path, method: :patch, html: {class: "edit_rant_form"} do |f| %>
   <div>
     <%= f.label :title %>
     <br>
@@ -19,6 +19,6 @@
   </div>
   <div>
     <br>
-    <%= f.submit "Edit rant" %>
+    <%= f.submit "Edit rants" %>
   </div>
 <% end %>

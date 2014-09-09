@@ -1,0 +1,15 @@
+<div>
+  <h1>My Rants</h1>
+</div>
+<br>
+<%= link_to "create rants", new_user_rant_path, class: "button-link" %>
+<br>
+    <% @rant.each do |rant_list| %>
+      <ul>
+        <li><%= rant_list.title %>
+          <dt> <%= rant_list.content %></dt>
+        </li>
+          <%= link_to "edit", edit_user_rant_path(@user, @rant) %>
+          <%= button_to "delete", user_rant_path(@user, @rant), method: "delete" %>
+      </ul>
+    <% end %>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <%= favicon_link_tag 'rant.jpg' %>
+  <%= favicon_link_tag 'rants.jpg' %>
   <title>Rant.ly</title>
   <%= stylesheet_link_tag 'application', media: 'all' %>
   <%= javascript_include_tag 'application' %>
@@ -11,28 +11,24 @@
 <header>
   <div class="container">
     <div id="logo">
+      <% if current_user == nil %>
       <%= link_to "Login", signin_path, class: "button-link" %>
-      <%= link_to "Join", new_registration_path, class: "button" %>
+      <%= link_to "Join", new_user_path, class: "button" %>
     </div>
+        <% end %>
     <%= link_to "Rant.ly", root_path, class: "button-link" %>
   </div>
 </header>
 <br>
 <br>
-</body>
-</div>
+<%if current_user%>
+<%= current_user.username %>
+  <%= link_to "Signout", signout_path, class: "button-link" %>
+  <%= link_to "Edit", edit_user_path(current_user.id), class: "button-link" %>
+  <% end %>
 <div id="flash"><%= flash[:notice] %></div>
 <br>
-<% if current_user %>
-  <div class="logout">
-    <%= current_user.username %> |
-    <%= link_to "Edit", edit_registration_path(current_user.id), class: "button-link" %>
-    <%= link_to "Logout", signout_path, class: "button-link" %>
-  </div>
-<br>
-  <br>
-  <br>
-<% end %>
+
 <main>
   <div class="container">
     <%= yield %>

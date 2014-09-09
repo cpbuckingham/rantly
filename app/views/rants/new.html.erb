@@ -7,7 +7,7 @@
   <% end %>
 </div>
 <br>
-<%= form_for @rant, url: rant_index_path, method: :create, html: {class: "create_rant_form"} do |f| %>
+<%= form_for ([@user, @rant]), url: rant_index_path, method: :create, html: {class: "create_rant_form"} do |f| %>
   <div>
     <%= f.label :title %>
     <br>
@@ -19,6 +19,6 @@
   </div>
   <div>
     <br>
-    <%= f.submit "Create rant" %>
+    <%= f.submit "Create rants" %>
   </div>
 <% end %>

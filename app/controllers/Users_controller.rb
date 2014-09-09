@@ -1,4 +1,4 @@
-class RegistrationsController < ApplicationController
+class UsersController < ApplicationController
 
   skip_before_filter :ensure_authenticated_user
 
@@ -16,7 +16,7 @@ class RegistrationsController < ApplicationController
       rant_frequency: params[:user][:rant_frequency]
     )
     if @user.save
-      redirect_to root_path
+      redirect_to user_rants_path(@user)
       flash[:notice] = "Thank you for registering"
     else
       flash[:notice] = "Your account could not be created"
@@ -24,7 +24,7 @@ class RegistrationsController < ApplicationController
     end
   end
   def edit
-    @user = User.find(params[:id])
+    @users = User.find(params[:id])
   end
 
   def update
@@ -36,7 +36,7 @@ class RegistrationsController < ApplicationController
       last_name: params[:user][:last_name],
       bio: params[:user][:bio],
       rant_frequency: params[:user][:rant_frequency])
-      redirect_to rant_index_path
+      redirect_to user_rants_path
       flash[:notice] = "Your profile was successfully updated!"
     else
       render :edit

@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(version: 20140819203128) do
   create_table "rants", force: true do |t|
     t.string  "title"
     t.string  "content"
-    t.integer "rant_id"
+    t.integer "user_id"
   end
 
   create_table "users", force: true do |t|
