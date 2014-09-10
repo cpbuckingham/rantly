@@ -14,16 +14,17 @@
       <% if current_user == nil %>
       <%= link_to "Login", signin_path, class: "button-link" %>
       <%= link_to "Join", new_user_path, class: "button" %>
+        <% else %>
+        <%= link_to "Signout", signout_path, class: "button-link" %>
+    <% end %>
     </div>
-        <% end %>
-    <%= link_to "Rant.ly", root_path, class: "button-link" %>
+    <%=  "Rant.ly" %>
   </div>
 </header>
 <br>
 <br>
 <%if current_user%>
 <%= current_user.username %>
-  <%= link_to "Signout", signout_path, class: "button-link" %>
   <%= link_to "Edit", edit_user_path(current_user.id), class: "button-link" %>
   <% end %>
 <div id="flash"><%= flash[:notice] %></div>

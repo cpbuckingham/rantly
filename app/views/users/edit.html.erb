@@ -1,4 +1,4 @@
-<%= form_for @user, url: registration_path, method: :patch, html: {class: "users-form"} do |f| %>
+<%= form_for @users, url: user_path, method: :patch, html: {class: "users-form"} do |f| %>
   <% f.object.errors.full_messages.each do |error| %>
     <div class="errors">
       <%= error %>
@@ -6,38 +6,38 @@
   <% end %>
   <div>
     <%= f.label :username %>
-    <%= f.text_field :username, value: @user.username %>
+    <%= f.text_field :username, value: @users.username %>
   </div>
   <br>
   <div>
     <%= f.label :password %>
-    <%= f.text_field :password, value: @user.password %>
+    <%= f.text_field :password, value: @users.password %>
   </div>
   <br>
   <div>
     <%= f.label :first_name %>
-    <%= f.text_field :first_name, value: @user.first_name %>
+    <%= f.text_field :first_name, value: @users.first_name %>
   </div>
   <br>
   <div>
     <%= f.label :last_name %>
-    <%= f.text_field :last_name, value: @user.last_name %>
+    <%= f.text_field :last_name, value: @users.last_name %>
   </div>
   <br>
   <div>
     <%= f.label :bio %>
-    <%= f.text_area :bio, :size => "30x10", value: @user.bio %>
+    <%= f.text_area :bio, :size => "30x10", value: @users.bio %>
   </div>
   <br>
   <%= "How often do you rants?" %>
   <div>
     <br>
     <%= f.label :daily %>
-    <%= f.radio_button  :rant_frequency, :daily, value: @user.rant_frequency %>
+    <%= f.radio_button  :rant_frequency, :daily, value: @users.rant_frequency %>
     <%= f.label :weekly %>
-    <%= f.radio_button  :rant_frequency, :weekly, value: @user.rant_frequency %>
+    <%= f.radio_button  :rant_frequency, :weekly, value: @users.rant_frequency %>
     <%= f.label :monthly %>
-    <%= f.radio_button  :rant_frequency, :monthly, value: @user.rant_frequency %>
+    <%= f.radio_button  :rant_frequency, :monthly, value: @users.rant_frequency %>
   </div>
   <br>
   <div>

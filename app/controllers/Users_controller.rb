@@ -16,7 +16,8 @@ class UsersController < ApplicationController
       rant_frequency: params[:user][:rant_frequency]
     )
     if @user.save
-      redirect_to user_rants_path(@user)
+      session[:user_id] = @user.id
+      redirect_to user_rants_path(@user.id)
       flash[:notice] = "Thank you for registering"
     else
       flash[:notice] = "Your account could not be created"
@@ -28,15 +29,15 @@ class UsersController < ApplicationController
   end
 
   def update
-    @user = User.find(params[:id])
-    if @user.update(
+    @users = User.find(params[:id])
+    if @users.update(
       username: params[:user][:username],
       password: params[:user][:password],
       first_name: params[:user][:first_name],
       last_name: params[:user][:last_name],
       bio: params[:user][:bio],
       rant_frequency: params[:user][:rant_frequency])
-      redirect_to user_rants_path
+      redirect_to user_rants_path(@users)
       flash[:notice] = "Your profile was successfully updated!"
     else
       render :edit

@@ -7,7 +7,7 @@
   <% end %>
 </div>
 <br>
-<%= form_for ([@user, @rant]), url: rant_index_path, method: :create, html: {class: "create_rant_form"} do |f| %>
+<%= form_for ([@user, @rant]), html: {class: "create_rant_form"} do |f| %>
   <div>
     <%= f.label :title %>
     <br>
@@ -15,7 +15,7 @@
     <br>
     <%= f.label :content %>
     <br>
-    <%= f.text_field :content, autofocus: true %>
+    <%= f.text_area :content, autofocus: true %>
   </div>
   <div>
     <br>
