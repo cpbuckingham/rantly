@@ -1,10 +1,10 @@
 <div id="rants_headers">
   <h1>Latest Rants</h1>
 </div>
-<% @rant.each do |rant_list| %>
+<% @rant.each do |rant| %>
   <ul>
-    <li> <%= rant_list.user.first_name %> | <%= rant_list.title %> | <%= rant_list.created_at %></li>
-    <dt> <%= rant_list.content %></dt>
+    <li> <%= link_to rant.user.first_name, user_bios_path(rant.user.id) %> | <%= rant.title %> | <%= rant.created_at %></li>
+    <dt> <%= rant.content %></dt>
     <hr>
   </ul>
 <% end %>
@@ -12,7 +12,6 @@
   <h1>My Rants</h1>
   <%= link_to "create rants", new_user_rant_path, class: "button-link" %>
 </div>
-<br>
 <br>
 <% @rants.each do |rants| %>
   <ul>
@@ -22,5 +21,14 @@
     </li>
     <%= link_to "edit", edit_user_rant_path(@user.id, rants.id) %>
     <%= button_to "delete", user_rant_path(@user, rants), method: "delete" %>
+  </ul>
+<% end %>
+<div id="follow_headers">
+<h1>I'm Following...</h1>
+</div>
+<% @follows.each do |following| %>
+  <ul>
+  <li>  <%= link_to following.user.first_name, user_bios_path(following.user.id) %><%= button_to "unfollow", user_follow_path(:id => following.id), method: "delete" %>
+  </li>
   </ul>
 <% end %>

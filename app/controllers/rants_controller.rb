@@ -8,6 +8,7 @@ class RantsController < ApplicationController
     @user = find_user
     @rant = Rant.order(:created_at).reverse_order.limit(3)
     @rants = Rant.where(:user_id => session[:user_id])
+    @follows = Follow.all
   end
 
   def create

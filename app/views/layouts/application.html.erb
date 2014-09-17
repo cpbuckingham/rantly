@@ -24,12 +24,12 @@
 <br>
 <br>
 <%if current_user%>
-<%= current_user.username %>
-  <%= link_to "Edit", edit_user_path(current_user.id), class: "button-link" %>
+Hello, <%= current_user.username %>
+  <%= link_to "Edit Profile", edit_user_path(current_user.id), class: "button-link" %>
+  <br>
   <% end %>
+  <br>
 <div id="flash"><%= flash[:notice] %></div>
-<br>
-
 <main>
   <div class="container">
     <%= yield %>

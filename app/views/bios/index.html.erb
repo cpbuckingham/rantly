@@ -1,0 +1,19 @@
+<br>
+Let me tell you about <%= @user.first_name %>
+<br>
+<br>
+<br>
+Last name: <%= @user.last_name %>
+<br>
+<br>
+Bio: <%= @user.bio %>
+<br>
+<br>
+
+How often they rant: <%= @user.rant_frequency %>
+<br>
+<br>
+<br>
+<%= link_to "Follow this Ranter", user_follows_path(:id => @user.id), :method => :create, class: "button-link" %>
+
+
