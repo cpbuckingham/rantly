@@ -14,6 +14,20 @@
  *= require_self
  */
 
+.clearfix {
+  clear: both;
+  zoom:1;
+  &:before, &:after {
+    content: "\0020";
+    display: block;
+    height: 0;
+    overflow: hidden;
+  }
+  &:after {
+    clear: both;
+  }
+}
+
 body {
     font-family: Copperplate, "Copperplate Gothic Light", fantasy;
 }
@@ -94,4 +108,29 @@ p {
 }
 #follow_headers{
   text-align: center;
+}
+.rants {
+  width: 80%;
+  border: 1px solid #ccc;
+  padding: 1em;
+  margin: 1em auto;
+  background: #efefef;
+}
+#rants_buttons{
+  float: right;
+  display: inline-block;
+  position: relative;
+}
+.my_rants {
+  width: 80%;
+  border: 1px solid #ccc;
+  padding: 1em;
+  margin: 1em auto;
+  background: #efefef;
+
+  dt{
+    width: 80%;
+    float: left;
+    position: relative;
+  }
 }
