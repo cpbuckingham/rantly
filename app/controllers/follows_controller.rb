@@ -6,9 +6,13 @@ class FollowsController < ApplicationController
       user_id: @user.id,
       follow_id: params[:id]
     )
-    @follow.save
-  redirect_to user_rants_path(@user.id)
+    if @follow.save
+      redirect_to user_rants_path(@user.id)
+    else
+      flash[:notice] = "You are already following this ranter"
+    end
   end
+
 
   def destroy
     @user = User.find(params[:user_id])

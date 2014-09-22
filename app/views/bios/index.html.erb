@@ -1,6 +1,6 @@
 <div id="rants_headers">
-Let me tell you about <%= @user.first_name %>.....
-<br>
+  Let me tell you about <%= @user.first_name %>.....
+  <br>
 </div>
 <br>
 <dt>Last name: <%= @user.last_name %></dt>
@@ -10,6 +10,11 @@ Let me tell you about <%= @user.first_name %>.....
 <dt>How often they rant: <%= @user.rant_frequency %></dt>
 <br>
 </ul>
-<%= link_to "Follow this Ranter", user_follows_path(:id => @user.id), :method => :create, class: "button-link" %>
+<% if @follows.present? %>
+<% check_for_follow(@follows.id) %>
+    <%= button_to "unfollow", user_follow_path(:id => @follows.id), method: "delete" %>
+<% else %>
+    <%= link_to "Follow this Ranter", user_follows_path(:id => @user.id), :method => :create, class: "button-link" %>
+<% end %>
 
 
