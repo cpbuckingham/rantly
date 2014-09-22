@@ -4,14 +4,14 @@
 <% @rant.each do |rant| %>
   <div class="rants">
     <div id="rants_headers">
-      <%= link_to rant.user.first_name, user_bios_path(rant.user.id) %>
+      <%= link_to rant.user.username, user_bios_path(rant.user.id) %>
     </div>
     <dt> <%= rant.title %>:</dt>
     <dt> <%= rant.content %></dt>
   </div>
 <% end %>
 <div id="rants_headers">
-  <h1 style="color: green;">My Rants</h1>
+  <h1 style="color: green;">Your Rants</h1>
   <%= link_to "create rants", new_user_rant_path, class: "button-link" %>
 </div>
 <br>
@@ -25,17 +25,6 @@
       <br>
       <br>
       <%= button_to "delete", user_rant_path(@user, rants), method: "delete" %>
-    </div>
-  </div>
-<% end %>
-<div id="follow_headers">
-  <h1 style="color: green;">Following</h1>
-</div>
-<% @follows.each do |following| %>
-  <div class="rants clearfix">
-    <%= link_to following.user.first_name, user_bios_path(following.user.id) %>
-    <div id="rants_buttons">
-      <%= button_to "unfollow", user_follow_path(:id => following.id), method: "delete" %>
     </div>
   </div>
 <% end %>

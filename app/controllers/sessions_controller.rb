@@ -11,7 +11,7 @@ class SessionsController < ApplicationController
 
     if @user && @user.authenticate(params[:user][:password])
       session[:user_id] = @user.id
-      redirect_to user_rants_path(@user.id)
+      redirect_to root_path
     else
       @user = User.new(username: params[:user][:username])
       @user.errors[:base] << "Username / password is invalid"

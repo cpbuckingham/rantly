@@ -1,9 +1,14 @@
-<%= form_for @users, url: user_path, method: :patch, html: {class: "users-form"} do |f| %>
+<div class="rants">
+  <div id="rants_headers">
+    <h1 style="color: green;">Update Profile</h1>
+    <%= form_for @users, url: user_path, method: :patch, html: {class: "users-form"} do |f| %>
   <% f.object.errors.full_messages.each do |error| %>
     <div class="errors">
       <%= error %>
     </div>
   <% end %>
+      <br>
+      <br>
   <div>
     <%= f.label :username %>
     <%= f.text_field :username, value: @users.username %>
@@ -11,7 +16,7 @@
   <br>
   <div>
     <%= f.label :password %>
-    <%= f.text_field :password, value: @users.password %>
+    <%= f.password_field :password, value: @users.password %>
   </div>
   <br>
   <div>
@@ -45,3 +50,5 @@
     <%= f.submit "Update profile", class: "button" %>
   </div>
 <% end %>
+  </div>
+</div>

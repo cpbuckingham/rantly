@@ -1,20 +1,36 @@
+<br>
 <div id="rants_headers">
-  Let me tell you about <%= @user.first_name %>.....
+  Let me tell you about <%= @user.username %>.....
   <br>
+  <br>
+  <br>
+  <% unless @user.id == current_user.id %>
+    <% if check_for_follow(@user) %>
+    <%= button_to "unfollow", user_follow_path(:id => @user.id, :user_id => current_user.id), method: "delete" %>
+  <% else %>
+    <%= link_to "Follow this Ranter", user_follows_path(:id => @user.id), :method => :create, class: "button-link" %>
+  <% end %>
+  <% end %>
 </div>
 <br>
-<dt>Last name: <%= @user.last_name %></dt>
+<div class="my_rants clearfix">
+  <dt>Last name: <%= @user.last_name %></dt>
 <br>
-<dt>Bio: <%= @user.bio %></dt>
+  <br>
+  <dt>Bio: <%= @user.bio %></dt>
 <br>
-<dt>How often they rant: <%= @user.rant_frequency %></dt>
+  <br>
+  <dt>How often they rant: <%= @user.rant_frequency %></dt>
 <br>
-</ul>
-<% if @follows.present? %>
-<% check_for_follow(@follows.id) %>
-    <%= button_to "unfollow", user_follow_path(:id => @follows.id), method: "delete" %>
-<% else %>
-    <%= link_to "Follow this Ranter", user_follows_path(:id => @user.id), :method => :create, class: "button-link" %>
+  </div>
+<div id="rants_headers">
+  <h1 style="color: green;"><%= @user.username%>'s rants</h1>
+</div>
+<% @rants.each do |rant| %>
+  <div class="rants">
+    <div id="rants_headers">
+    </div>
+    <dt> <%= rant.title %>:</dt>
+    <dt> <%= rant.content %></dt>
+  </div>
 <% end %>
-
-

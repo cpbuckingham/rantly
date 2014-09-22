@@ -1,0 +1,11 @@
+<div id="follow_headers">
+  <h1 style="color: green;">Following</h1>
+</div>
+<% @follows.each do |following| %>
+  <div class="rants clearfix">
+    <%= link_to following.user.username, user_bios_path(following.user.id) %>
+    <div id="rants_buttons">
+      <%= button_to "unfollow", user_follow_path(:id => following.follow_id), method: "delete" %>
+    </div>
+  </div>
+<% end %>

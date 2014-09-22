@@ -1,4 +1,3 @@
-<h1>Edit rant</h1>
 <div class="errors">
   <% if @rant.errors.any? %>
     <% @rant.errors.messages[:title].each do |error| %>
@@ -7,6 +6,9 @@
   <% end %>
 </div>
 <br>
+<div class="rants">
+  <div id="rants_headers">
+    <h1 style="color: green;">Edit Rant</h1>
 <%= form_for ([@user, @rant]), html: {class: "edit_rant_form"} do |f| %>
   <div>
     <%= f.label :title %>
@@ -15,10 +17,12 @@
     <br>
     <%= f.label :content %>
     <br>
-    <%= f.text_field :content, value: @rant.content %>
+    <%= f.text_area :content, value: @rant.content, autofocus: true, size: '30x10' %>
   </div>
   <div>
     <br>
     <%= f.submit "Edit rants" %>
   </div>
 <% end %>
+    </div>
+  </div>

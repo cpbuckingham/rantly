@@ -2,7 +2,6 @@
 <html>
 <head>
   <%= favicon_link_tag 'rants.jpg' %>
-  <title>Rant.ly</title>
   <%= stylesheet_link_tag 'application', media: 'all' %>
   <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
@@ -15,7 +14,7 @@
       <%= link_to "Login", signin_path, class: "button-link" %>
       <%= link_to "Join", new_user_path, class: "button" %>
         <% else %>
-         <h11 style= "color: white; padding: 20px;">Hi, <%= current_user.first_name %></h11>
+         <h11 style= "color: white; padding: 20px;">Hi, <%= current_user.username %></h11>
         <%= link_to "Edit Profile", edit_user_path(current_user.id), class: "button-link" %>
         <%= link_to "Signout", signout_path, class: "button-link" %>
     <% end %>
@@ -25,6 +24,16 @@
 </header>
 <br>
   <br>
+<div id = "toolbar">
+  <% if current_user == nil %>
+<% else %>
+<%= link_to "#{current_user.username}'s Dashboard" , user_rants_path(current_user.id) %> <span class="green">|</span>
+<%= link_to "Following" , user_follows_path(current_user.id) %> <span class="green">|</span>
+<%= link_to "Favorites" , root_path %> <span class="green">|</span>
+<%= link_to "Search" , root_path %>
+</div>
+    <%end%>
+<br>
 <div id="flash"><%= flash[:notice] %></div>
 <main>
   <div class="container">
