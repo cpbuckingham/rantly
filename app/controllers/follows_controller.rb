@@ -24,7 +24,7 @@ class FollowsController < ApplicationController
     @follow.destroy
     redirect_to user_follows_path
   end
-  
+
   private
 
   def find_user

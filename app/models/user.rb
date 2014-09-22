@@ -3,5 +3,5 @@ class User < ActiveRecord::Base
   has_many :rants
   has_many :bios
   has_many :follows
-  validates :username, :password, :first_name, presence: true, uniqueness: true
+  validates :username, :first_name, :last_name, :bio, :rant_frequency, presence: true, uniqueness: true
 end
