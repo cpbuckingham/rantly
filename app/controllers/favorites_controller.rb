@@ -13,11 +13,13 @@ class FavoritesController < ApplicationController
   def index
     @user = find_user
     @favorites = Favorite.where(:user_id => session[:user_id])
+
   end
 
   def destroy
     @user = current_user.id
     @favorite = Favorite.where(id: params[:id], user_id: @user).first
+    p @favorite
     @favorite.destroy
     redirect_to :back
   end
