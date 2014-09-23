@@ -1,30 +1,28 @@
-<br>
 <div id="rants_headers">
-  Let me tell you about <%= @user.username %>.....
-  <br>
-  <br>
-
+  <h1 style="color: green;"><%= @user.username %></h1>
   <% unless @user.id == current_user.id %>
     <% if check_for_follow(@user) %>
-    <%= button_to "unfollow", user_follow_path(:id => @user.id, :user_id => current_user.id), method: "delete" %>
-  <% else %>
-    <%= link_to "Follow this Ranter", user_follows_path(:id => @user.id), :method => :create, class: "button-link" %>
-  <% end %>
+      <%= button_to "unfollow", user_follow_path(:id => @user.id, :user_id => current_user.id), method: "delete" %>
+    <% else %>
+      <%= link_to "Follow this Ranter", user_follows_path(:id => @user.id), :method => :create, class: "button-link" %>
+    <% end %>
   <% end %>
 </div>
 <br>
 <div class="my_rants clearfix">
   <dt>Last name: <%= @user.last_name %></dt>
-<br>
+  <br>
   <br>
   <dt>Bio: <%= @user.bio %></dt>
-<br>
+  <br>
   <br>
   <dt>How often they rant: <%= @user.rant_frequency %></dt>
-<br>
-  </div>
+  <br>
+</div>
 <div id="rants_headers">
-  <h1 style="color: green;"><%= @user.username%>'s rants</h1>
+<br>
+<img class="ranter-image" style="width:60%;height:40%" src=<%= @user.image %>>
+  <h1 style="color: green;"><%= @user.username %>'s rants</h1>
 </div>
 <% @rants.each do |rant| %>
   <div class="rants">
@@ -33,5 +31,14 @@
     <dt> <%= rant.title %>:</dt>
     <dt> <%= rant.content %></dt>
     <br>
+
+    <div id="rants_footers">
+      <% favorite = Favorite.where(rant_id: rant.id, user_id: current_user.id).first %>
+      <% if !favorite %>
+        <%= link_to "Favorite", user_favorites_path(rant_id: rant.id), method: :POST %>
+      <% else %>
+        <%= link_to "Unfavorite", user_favorite_path(@user, favorite), method: :DELETE %>
+      <% end %>
+    </div>
   </div>
 <% end %>

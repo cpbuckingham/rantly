@@ -1,12 +1,12 @@
+<div id="rants_headers">
 <div class="errors">
   <% if @rant.errors.any? %>
     <% @rant.errors.full_messages.each do |error| %>
-      <%= error %>
+      <%= error %><br>
     <% end %>
   <% end %>
 </div>
 <div class="rants">
-  <div id="rants_headers">
     <h1 style="color: green;">Create Rant</h1>
 <br>
 <%= form_for ([@user, @rant]), html: {class: "create_rant_form"} do |f| %>

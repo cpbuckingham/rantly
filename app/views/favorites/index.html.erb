@@ -1,15 +1,20 @@
 <div id="follow_headers">
   <h1 style="color: green;">Favorites</h1>
 </div>
-  <% @favorites.each do |favs| %>
-  <div class="rants clearfix">
-    <%= link_to favs.user_name, user_bios_path(favs.user_id) %>
-    <%= favs.rant.title %>:
+  <% @favorites.each do |fav| %>
+    <div class="rants clearfix">
+    <div id="rants_headers">
+      <img class="rant-image" style="width:30%;height:15%" src=<%= fav.rant.user.image %>>
+      <br>
+      <%= link_to fav.rant.user.username, user_bios_path(fav.rant.user.id) %>
+    </div><br>
+    <%= fav.rant.title %>:
     <br>
-    <%= favs.rant.content %>
+    <%= fav.rant.content %>
     <div id="rants_buttons">
       <br>
-      <%= link_to "Unfavorite", user_favorite_path(@user, favs), method: :DELETE %>
+      <br>
+      <%= link_to "Unfavorite", user_favorite_path(@user, fav), method: :DELETE %>
       </div>
   </div>
 <% end %>

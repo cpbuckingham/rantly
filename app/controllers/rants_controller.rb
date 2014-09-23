@@ -21,7 +21,7 @@ class RantsController < ApplicationController
       redirect_to user_rants_path(@user.id)
     else
       @rant.errors
-      render :edit
+      render :new
     end
   end
 
@@ -39,6 +39,7 @@ class RantsController < ApplicationController
       flash[:notice] = "Your rants was successfully updated!"
       redirect_to user_rants_path(@user.id)
     else
+      @rant.errors
       render :edit
     end
   end

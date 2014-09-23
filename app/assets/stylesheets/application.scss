@@ -100,6 +100,12 @@ p {
 #rants_headers {
   text-align: center;
 }
+#following_page{
+  display:inline-block;
+}
+.follow_contain{
+  position: inline;
+}
 #rants{
   padding: .25em;
   border: 10px black;
@@ -112,21 +118,35 @@ p {
 #rants_footers{
   text-align: right;
 }
+
+#following_page{
+ width: 57%;
+  a {
+    float:right;
+    padding:40px;
+  }
+}
 img {
   height: 80px;
   width: 80px;
 }
 .rants {
   width: 80%;
-  border: 1px solid #ccc;
+  border: 2px solid #ccc;
   padding: 1em;
-  margin: 1em auto;
+  margin: 2em auto;
   background: #efefef;
 }
 #rants_buttons{
   float: right;
   display: inline-block;
   position: relative;
+}
+#rant_button{
+  float: right;
+  display: inline-block;
+  position: relative;
+  padding: 40px;
 }
 .my_rants {
   width: 80%;
@@ -146,4 +166,10 @@ img {
 }
 .errors {
   color: red;
+}
+.rant-image{
+  display:inline-block;
+  position:relative;
+  float: left;
+  padding: 20px;
 }
