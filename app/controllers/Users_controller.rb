@@ -13,6 +13,7 @@ class UsersController < ApplicationController
       first_name: params[:user][:first_name],
       last_name: params[:user][:last_name],
       bio: params[:user][:bio],
+      image: params[:user][:image],
       rant_frequency: params[:user][:rant_frequency]
     )
     if @user.save
@@ -35,6 +36,7 @@ class UsersController < ApplicationController
       first_name: params[:user][:first_name],
       last_name: params[:user][:last_name],
       bio: params[:user][:bio],
+      image: params[:user][:image],
       rant_frequency: params[:user][:rant_frequency])
       redirect_to root_path
       flash[:notice] = "Your profile was successfully updated!"

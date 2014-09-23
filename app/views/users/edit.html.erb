@@ -1,54 +1,68 @@
 <div class="rants">
   <div id="rants_headers">
     <h1 style="color: green;">Update Profile</h1>
+    <img class="ranter-image" style="width:60%;height:40%" src=<%= @users.image %>>
     <%= form_for @users, url: user_path, method: :patch, html: {class: "users-form"} do |f| %>
-  <% f.object.errors.full_messages.each do |error| %>
-    <div class="errors">
-      <%= error %>
-    </div>
-  <% end %>
+      <% f.object.errors.full_messages.each do |error| %>
+        <div class="errors">
+          <%= error %>
+        </div>
+      <% end %>
       <br>
       <br>
-  <div>
-    <%= f.label :username %>
-    <%= f.text_field :username, value: @users.username %>
+
+      <div>
+        <%= f.label :username %>
+        <%= f.text_field :username, value: @users.username %>
+      </div>
+      <br>
+
+      <div>
+        <%= f.label :password %>
+        <%= f.password_field :password, value: @users.password %>
+      </div>
+      <br>
+
+      <div>
+        <%= f.label :first_name %>
+        <%= f.text_field :first_name, value: @users.first_name %>
+      </div>
+      <br>
+
+      <div>
+        <%= f.label :last_name %>
+        <%= f.text_field :last_name, value: @users.last_name %>
+      </div>
+      <br>
+
+      <div>
+        <%= f.label :bio %>
+        <%= f.text_area :bio, :size => "30x10", value: @users.bio %>
+      </div>
+      <br>
+
+      <div>
+        <%= f.label :image, "Profile Image URL" %>
+        <%= f.text_field :image, class: "wide-input", value: @users.image %>
+      </div>
+      <br>
+      <%= "How often do you rants?" %>
+      <div>
+        <br>
+        <%= f.label :daily %>
+        <%= f.radio_button :rant_frequency, :daily, value: @users.rant_frequency %>
+        <%= f.label :weekly %>
+        <%= f.radio_button :rant_frequency, :weekly, value: @users.rant_frequency %>
+        <%= f.label :monthly %>
+        <%= f.radio_button :rant_frequency, :monthly, value: @users.rant_frequency %>
+      </div>
+      <br>
+
+      <div>
+        <br>
+        <%= f.submit "Update profile", class: "button" %>
+      </div>
+    <% end %>
   </div>
-  <br>
-  <div>
-    <%= f.label :password %>
-    <%= f.password_field :password, value: @users.password %>
-  </div>
-  <br>
-  <div>
-    <%= f.label :first_name %>
-    <%= f.text_field :first_name, value: @users.first_name %>
-  </div>
-  <br>
-  <div>
-    <%= f.label :last_name %>
-    <%= f.text_field :last_name, value: @users.last_name %>
-  </div>
-  <br>
-  <div>
-    <%= f.label :bio %>
-    <%= f.text_area :bio, :size => "30x10", value: @users.bio %>
-  </div>
-  <br>
-  <%= "How often do you rants?" %>
-  <div>
-    <br>
-    <%= f.label :daily %>
-    <%= f.radio_button  :rant_frequency, :daily, value: @users.rant_frequency %>
-    <%= f.label :weekly %>
-    <%= f.radio_button  :rant_frequency, :weekly, value: @users.rant_frequency %>
-    <%= f.label :monthly %>
-    <%= f.radio_button  :rant_frequency, :monthly, value: @users.rant_frequency %>
-  </div>
-  <br>
-  <div>
-    <br>
-    <%= f.submit "Update profile", class: "button" %>
-  </div>
-<% end %>
-  </div>
+</div>
 </div>

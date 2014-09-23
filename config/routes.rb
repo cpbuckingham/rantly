@@ -5,6 +5,8 @@ Rails.application.routes.draw do
  end
   resources :users do
     resources :bios, only: :index
+    resources :favorites
+
   end
   resources :users do
   resources :follows

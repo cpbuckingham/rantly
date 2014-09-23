@@ -1,0 +1,14 @@
+<div id="follow_headers">
+  <h1 style="color: green;">Favorites</h1>
+</div>
+  <% @favorites.each do |favs| %>
+  <div class="rants clearfix">
+    <%= favs.rant.title %>:
+    <br>
+    <%= favs.rant.content %>
+    <div id="rants_buttons">
+      <br>
+      <%= link_to "Unfavorite", user_favorite_path(@user, favs), method: :DELETE %>
+      </div>
+  </div>
+<% end %>
