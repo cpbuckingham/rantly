@@ -8,6 +8,8 @@ Rails.application.routes.draw do
     resources :favorites
 
   end
+  resources :searches, only: :index
+
   resources :users do
   resources :follows
   end

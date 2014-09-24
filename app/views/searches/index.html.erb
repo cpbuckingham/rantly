@@ -1,0 +1,20 @@
+<%= form_for @search, url: searches_path, html: {class: "searches-form"} do |f| %>
+  <% f.object.errors.full_messages.each do |error| %>
+    <div class="errors">
+      <%= error %>
+    </div>
+  <% end %>
+  <div class="rants">
+    <div id="rants_headers">
+      <h1 style="color: green;">Search</h1>
+      <div>
+        <%= f.label :search, "" %>
+        <%= f.text_field :search %>
+        <br>
+        <br>
+        <br>
+        <br>
+      </div>
+    </div>
+  </div>
+<%end%>

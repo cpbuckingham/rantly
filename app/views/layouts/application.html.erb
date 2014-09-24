@@ -30,7 +30,7 @@
 <%= link_to "#{current_user.username}'s Dashboard" , user_rants_path(current_user.id) %> <span class="green">|</span>
 <%= link_to "Following" , user_follows_path(current_user.id) %> <span class="green">|</span>
 <%= link_to "Favorites" , user_favorites_path(current_user.id) %> <span class="green">|</span>
-<%= link_to "Search" , root_path %>
+<%= link_to "Search" , searches_path %>
 </div>
     <%end%>
 <br>
