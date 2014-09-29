@@ -10,7 +10,7 @@
 <header>
   <div class="container">
     <div id="logo">
-      <% if current_user == nil %>
+        <% if current_user == nil %>
       <%= link_to "Login", signin_path, class: "button-link" %>
       <%= link_to "Join", new_user_path, class: "button" %>
         <% else %>

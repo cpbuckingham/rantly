@@ -1,22 +1,24 @@
-<%= form_for @search, url: searches_path, html: {class: "searches-form"} do |f| %>
-  <% f.object.errors.full_messages.each do |error| %>
-    <div class="errors">
-      <%= error %>
+<div class="rants">
+  <div id="rants_headers">
+    <h1 style="color: green;">Search</h1>
+    <div id="search_bar">
+      <%= form_tag searches_path, :method => 'get' do %>
+        <%= text_field_tag :search %>
+        <%= submit_tag "Search", :name => nil %>
+      <% end %>
     </div>
-  <% end %>
-  <div class="rants">
+    <br>
+  </div>
+</div>
+<% @rants.each do |rant| %>
+  <div class="rants clearfix">
     <div id="rants_headers">
-      <h1 style="color: green;">Search</h1>
-      <div>
-        <br>
-        <%= f.label :search, "" %>
-        <%= f.text_field :search %>
-        <br>
-        <br>
-        <br>
-        <%= f.submit "Search" %>
-        <br>
-      </div>
+      <img class="rant-image" style="width:30%;height:15%" src=<%= rant.user.image %>>
+      <%= link_to rant.user.username, user_bios_path(rant.user.id) %>
     </div>
+    <br>
+    <dt> <%= rant.title %>:</dt>
+    <dt> <%= rant.content %></dt>
+    <br>
   </div>
 <%end%>
