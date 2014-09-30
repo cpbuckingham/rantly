@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 gem 'pg'
 gem 'bcrypt', '~> 3.1.7'
+gem 'compass-rails', '~> 1.1.7'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -33,6 +34,7 @@ gem 'spring',        group: :development
 group :development, :test do
   gem 'rspec-rails'
   gem 'capybara'
+
 end
 
 # Use ActiveModel has_secure_password
