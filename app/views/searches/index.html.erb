@@ -22,3 +22,15 @@
     <br>
   </div>
 <%end%>
+<% @rant.each do |rant| %>
+  <div class="rants clearfix">
+    <div id="rants_headers">
+      <img class="rant-image" style="width:30%;height:15%" src=<%= rant.user.image %>>
+      <%= link_to rant.user.username, user_bios_path(rant.user.id) %>
+    </div>
+    <br>
+    <dt> <%= rant.title %>:</dt>
+    <dt> <%= rant.content %></dt>
+    <br>
+  </div>
+<%end%>
