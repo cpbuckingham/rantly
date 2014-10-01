@@ -4,12 +4,15 @@
 <% @rant.each do |rant| %>
   <div class="rants clearfix">
     <div id="rants_headers">
-      <img class="rant-image" style="width:30%;height:15%" src=<%= rant.user.image %>>
       <%= link_to rant.user.username, user_bios_path(rant.user.id) %>
+      <img class="rant-image" style="width:30%;height:15%" src=<%= rant.user.image %>>
+
     </div><br>
+    <div class="indexing_rants">
     <dt> <%= rant.title %>:</dt>
-    <dt> <%= rant.content %></dt>
+    <dt> <%= create_markdown(rant.content) %></dt>
     <br>
+      </div>
     <div id="rants_footers">
     <% favorite = Favorite.where(rant_id: rant.id, user_id: @user.id).first %>
     <% if !favorite %>
@@ -27,9 +30,11 @@
 <br>
 <% @rants.each do |rants| %>
   <div class="my_rants clearfix">
+    <div class="indexing_rants">
     <dt> <%= rants.title %>:
       <br>
-      <%= rants.content %></dt>
+      <%= create_markdown(rants.content) %></dt>
+      </div>
     <div id="rants_buttons">
       <%= link_to "edit", edit_user_rant_path(@user.id, rants.id), class: "button-link" %>
       <br>

@@ -29,7 +29,7 @@
     <div id="rants_headers">
     </div>
     <dt> <%= rant.title %>:</dt>
-    <dt> <%= rant.content %></dt>
+    <dt> <%= create_markdown(rant.content) %></dt>
     <br>
     <div id="rants_footers">
       <% favorite = Favorite.where(rant_id: rant.id, user_id: current_user.id).first %>

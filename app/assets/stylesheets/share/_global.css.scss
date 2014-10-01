@@ -74,8 +74,8 @@ header {
   bottom: 0;
 }
 p {
-  color: white;
-  width:29rem;
+  color: black;
+  width:90%;
   text-align:left;
   margin:0;
 }
@@ -87,6 +87,7 @@ p {
 }
 #rants_headers {
   text-align: center;
+  position: relative;
 }
 #following_page{
   display:inline-block;
@@ -163,6 +164,9 @@ img {
 }
 #search_bar{
   text-align: center;
+}
+.indexing_rants{
+  width:100%;
 }
 
 /////////////////////////////// Valcano

@@ -18,7 +18,7 @@
     </div>
     <br>
     <dt> <%= rant.title %>:</dt>
-    <dt> <%= rant.content %></dt>
+    <dt> <%= create_markdown(rant.content) %></dt>
     <br>
   </div>
 <%end%>
@@ -30,7 +30,7 @@
     </div>
     <br>
     <dt> <%= rant.title %>:</dt>
-    <dt> <%= rant.content %></dt>
+    <dt> <%= create_markdown(rant.content) %></dt>
     <br>
   </div>
 <%end%>
@@ -42,7 +42,7 @@
     </div>
     <br>
     <dt> <%= content.title %>:</dt>
-    <dt> <%= content.content %></dt>
+    <dt> <%= create_markdown(content.content) %></dt>
     <br>
   </div>
 <%end%>

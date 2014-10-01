@@ -58,4 +58,5 @@ class RantsController < ApplicationController
     User.find(params[:user_id])
   end
 
+
 end
