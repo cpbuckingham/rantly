@@ -53,6 +53,67 @@ feature 'homepage' do
     expect(page).to have_content "Your rants was deleted!"
   end
 
+  scenario 'see another person rants' do
+    another_persons_rant
+    expect(page).to have_content "american airlines is the best"
+  end
+
+  scenario 'follow another user' do
+    another_persons_rant
+    click_on 'cam'
+    click_on 'Follow this Ranter'
+    expect(page).to have_content "Following"
+    expect(page).to have_content "cam"
+
+  end
+
+  scenario 'unfollow someone' do
+    another_persons_rant
+    click_on 'cam'
+    click_on 'Follow this Ranter'
+    expect(page).to have_content "Following"
+    expect(page).to have_content "cam"
+    click_on 'cam'
+    click_on 'unfollow'
+    expect(page).to have_content "Following"
+    expect(page).to_not have_content "cam"
+
+  end
+
+  scenario 'seeing a users profile' do
+  another_persons_rant
+  click_on 'cam'
+  expect(page).to have_content "american airlines is the best"
+  end
+
+  scenario 'login errors' do
+    user_register
+    visit '/signin'
+    click_on 'Login'
+    fill_in 'user_username', with: 'cam'
+    expect(page).to have_content "Username / password is invalid"
+
+  end
+
+  scenario 'register errors' do
+    visit '/'
+    click_link 'Join'
+    fill_in 'user_username', with: 'cam'
+    fill_in 'user_first_name', with: 'cam'
+    fill_in 'user_last_name', with: 'buckingham'
+    fill_in 'user_bio', with:  'gschool'
+    fill_in 'user_image', with: 'https://students-gschool-production.s3.amazonaws.com/uploads/user/avatar/61/IMG_6029.JPG'
+    click_button 'Register'
+    expect(page).to have_content "Password can't be blank"
+  end
+
+  scenario 'favoriting a rant' do
+    another_persons_rant
+    click_on 'Favorite'
+    click_on 'Favorites'
+    expect(page).to have_content "american airlines is the best"
+  end
+
   def user_register
     visit '/'
     click_link 'Join'
@@ -79,6 +140,23 @@ feature 'homepage' do
     click_on 'create rants'
     fill_in 'rant_title', with: 'airlines'
     fill_in 'rant_content', with: 'american airlines is the best'
+    click_on 'Create rants'
+  end
+  def another_persons_rant
+    create_rant
+    click_on 'Signout'
+    click_link 'Join'
+    fill_in 'user_username', with: 'alex'
+    fill_in 'user_password', with: '123'
+    fill_in 'user_first_name', with: 'alex'
+    fill_in 'user_last_name', with: 'mcritchie'
+    fill_in 'user_bio', with:  'gschool'
+    fill_in 'user_image', with: 'https://students-gschool-production.s3.amazonaws.com/uploads/user/avatar/61/IMG_6029.JPG'
+    click_button 'Register'
+    click_on "alex's Dashboard"
+    click_on 'create rants'
+    fill_in 'rant_title', with: 'food'
+    fill_in 'rant_content', with: 'greek food is the best'
     click_on 'Create rants'
   end
 end

@@ -36,6 +36,8 @@ gem 'rails_12factor', '~> 0.0.2', group: :production
 group :development, :test do
   gem 'rspec-rails'
   gem 'capybara'
+  gem 'launchy'
+
 
 end
 

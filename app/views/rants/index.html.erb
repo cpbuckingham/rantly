@@ -61,9 +61,9 @@
 <div id="rants_footers">
   <% favorite = Favorite.where(rant_id: mentions.id, user_id: @user.id).first %>
   <% if !favorite %>
-    <%= link_to "Favorite", user_favorites_path(rant_id: mentions.id), method: :POST %>
+    <%= link_to "Favorite", user_favorites_path(rant_id: mentions.id), method: :post %>
   <% else %>
-    <%= link_to "Unfavorite", user_favorite_path(@user, favorite), method: :DELETE %>
+    <%= link_to "Unfavorite", user_favorite_path(@user, favorite), method: :delete %>
   <% end %>
 </div>
 </div>
