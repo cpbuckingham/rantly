@@ -108,7 +108,7 @@ feature 'homepage' do
   end
 
   scenario 'favoriting a rant' do
-    another_persons_rant
+    create_rant
     click_on 'Favorite'
     click_on 'Favorites'
     expect(page).to have_content "american airlines is the best"
