@@ -16,7 +16,7 @@
         <% else %>
          <h11 style= "color: white; padding: 20px;">Hi, <%= current_user.username %></h11>
         <%= link_to "Edit Profile", edit_user_path(current_user.id), class: "button-link" %>
-        <%= link_to "Signout", signout_path, class: "button-link" %>
+        <%= link_to "Logout", signout_path, class: "button-link" %>
     <% end %>
     </div>
     <h11 style= "color: green;"><%=  "Rant.ly" %></h11>

@@ -19,7 +19,7 @@ feature 'homepage' do
 
   scenario 'can logout' do
     user_login
-    click_on 'Signout'
+    click_on 'Logout'
     visit '/'
   end
 
@@ -255,7 +255,7 @@ feature 'homepage' do
     fill_in 'rant_title', with: 'airlines'
     fill_in 'rant_content', with: 'american airlines is the best, right @alex?'
     click_on 'Create rants'
-    click_on 'Signout'
+    click_on 'Logout'
     click_link 'Join'
     fill_in 'user_username', with: 'alex'
     fill_in 'user_password', with: '123'
@@ -300,7 +300,7 @@ feature 'homepage' do
   end
   def another_persons_rant
     create_rant
-    click_on 'Signout'
+    click_on 'Logout'
     click_link 'Join'
     fill_in 'user_username', with: 'alex'
     fill_in 'user_password', with: '123'
