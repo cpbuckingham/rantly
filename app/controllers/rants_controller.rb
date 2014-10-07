@@ -6,7 +6,7 @@ class RantsController < ApplicationController
 
   def index
     @user = find_user
-    @rant = Rant.order(:created_at).reverse_order.limit(3)
+    @rant = Rant.order(:created_at).reverse_order.limit(3).where("user_id <> #{current_user.id}")
     @rants = Rant.where(:user_id => session[:user_id])
     @follows = Follow.where(:user_id => session[:user_id])
     @mentioned = Rant.where('content LIKE ?',"%@"+"#{current_user.username}"+"%")

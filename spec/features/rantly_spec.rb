@@ -107,7 +107,7 @@ feature 'homepage' do
   scenario 'rant errors with no title' do
     user_login
     click_on "cam's Dashboard"
-    click_on 'create rants'
+    click_on 'Create rant'
     fill_in 'rant_content', with: 'american airlines is the best'
     click_on 'Create rants'
     expect(page).to have_content "Title can't be blank"
@@ -116,21 +116,21 @@ feature 'homepage' do
   scenario 'rant errors with no content' do
     user_login
     click_on "cam's Dashboard"
-    click_on 'create rants'
+    click_on 'Create rant'
     fill_in 'rant_title', with: 'airlines'
     click_on 'Create rants'
     expect(page).to have_content "Content can't be blank"
   end
 
   scenario 'favoriting a rant' do
-    create_rant
+    another_persons_rant
     click_on 'Favorite'
     click_on 'Favorites'
     expect(page).to have_content 'american airlines is the best'
   end
 
   scenario 'unfavoriting a rant' do
-    create_rant
+    another_persons_rant
     click_on 'Favorite'
     click_on 'Favorites'
     click_on 'Unfavorite'
@@ -204,7 +204,7 @@ feature 'homepage' do
   end
 
   scenario 'bio page has rants ordered by most favorite' do
-  create_rant
+  another_persons_rant
   click_on 'Favorite'
   click_on 'cam'
   expect(page).to have_content 'Unfavorite | 1'
@@ -241,7 +241,7 @@ feature 'homepage' do
   scenario 'markdown parser works' do
     user_login
     click_on "cam's Dashboard"
-    click_on 'create rants'
+    click_on 'Create rant'
     fill_in 'rant_title', with: 'markdown'
     fill_in 'rant_content', with: '##TEST'
     click_on 'Create rants'
@@ -251,7 +251,7 @@ feature 'homepage' do
   scenario 'when a user is mentioned by another user, that user sees a section of rants where they are mentioned' do
     user_login
     click_on "cam's Dashboard"
-    click_on 'create rants'
+    click_on 'Create rant'
     fill_in 'rant_title', with: 'airlines'
     fill_in 'rant_content', with: 'american airlines is the best, right @alex?'
     click_on 'Create rants'
@@ -293,7 +293,7 @@ feature 'homepage' do
   def create_rant
     user_login
     click_on "cam's Dashboard"
-    click_on 'create rants'
+    click_on 'Create rant'
     fill_in 'rant_title', with: 'airlines'
     fill_in 'rant_content', with: 'american airlines is the best'
     click_on 'Create rants'
@@ -310,7 +310,7 @@ feature 'homepage' do
     fill_in 'user_image', with: 'https://students-gschool-production.s3.amazonaws.com/uploads/user/avatar/61/IMG_6029.JPG'
     click_button 'Register'
     click_on "alex's Dashboard"
-    click_on 'create rants'
+    click_on 'Create rant'
     fill_in 'rant_title', with: 'food'
     fill_in 'rant_content', with: 'greek food is the best'
     click_on 'Create rants'
