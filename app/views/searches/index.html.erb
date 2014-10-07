@@ -1,6 +1,7 @@
 <div class="rants">
   <div id="rants_headers">
     <h1 style="color: green;">Search</h1>
+
     <div id="search_bar">
       <%= form_tag searches_path, :method => 'get' do %>
         <%= text_field_tag :search %>
@@ -16,33 +17,48 @@
       <img class="rant-image" style="width:30%;height:15%" src=<%= rant.user.image %>>
       <%= link_to rant.user.username, user_bios_path(rant.user.id) %>
     </div>
-    <br>
-    <dt> <%= rant.title %>:</dt>
-    <dt> <%= create_markdown(rant.content) %></dt>
-    <br>
-  </div>
-<%end%>
+    <div id="boxrants">
+      <%= link_to user_rant_path(rant.user.id, rant.id) do %>
+        <br>
+        <dt> <%= rant.title %>:</dt>
+        <dt> <%= create_markdown(rant.content) %></dt>
+        <br>
+        </div>
+        </div>
+      <% end %>
+<% end %>
 <% @rant.each do |rant| %>
   <div class="rants clearfix">
     <div id="rants_headers">
       <img class="rant-image" style="width:30%;height:15%" src=<%= rant.user.image %>>
       <%= link_to rant.user.username, user_bios_path(rant.user.id) %>
     </div>
-    <br>
-    <dt> <%= rant.title %>:</dt>
-    <dt> <%= create_markdown(rant.content) %></dt>
-    <br>
-  </div>
-<%end%>
+    <div id="boxrants">
+      <%= link_to user_rant_path(rant.user.id, rant.id) do %>
+        <br>
+        <dt> <%= rant.title %>:</dt>
+        <dt> <%= create_markdown(rant.content) %></dt>
+        <br>
+        </div>
+        </div>
+
+      <% end %>
+<% end %>
+
 <% @contents.each do |content| %>
   <div class="rants clearfix">
     <div id="rants_headers">
       <img class="rant-image" style="width:30%;height:15%" src=<%= content.user.image %>>
       <%= link_to content.user.username, user_bios_path(content.user.id) %>
     </div>
-    <br>
-    <dt> <%= content.title %>:</dt>
-    <dt> <%= create_markdown(content.content) %></dt>
-    <br>
-  </div>
-<%end%>
+    <div id="boxrants">
+      <%= link_to user_rant_path(content.user.id, content.id) do %>
+        <br>
+        <dt> <%= content.title %>:</dt>
+        <dt> <%= create_markdown(content.content) %></dt>
+        <br>
+
+        </div>
+        </div>
+      <% end %>
+<% end %>

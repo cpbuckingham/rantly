@@ -5,10 +5,12 @@
   </div>
   <br>
   <div id="rants_footers">
-    <% if check_for_follow(@rant.user) %>
+    <% unless @rant.user.id == current_user.id %>
+  <% if check_for_follow(@rant.user) %>
       <%= button_to "unfollow", user_follow_path(:id => @rant.user.id, :user_id => @user.id), method: "delete" %>
     <% else %>
       <%= link_to "follow", user_follows_path(id: @rant.user.id), :method => :post, class: "button-link" %>
+    <% end %>
     <% end %>
     <br>
   </div>
