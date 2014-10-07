@@ -253,7 +253,7 @@ feature 'homepage' do
     click_on "cam's Dashboard"
     click_on 'Create rant'
     fill_in 'rant_title', with: 'airlines'
-    fill_in 'rant_content', with: 'american airlines is the best, right @alex?'
+    fill_in 'rant_content', with: 'american airlines is the best, american airlines is the best, american airlines is the best, american airlines is the best, american airlines is the best, right @alex?'
     click_on 'create rant'
     click_on 'Logout'
     click_link 'Join'
@@ -265,7 +265,7 @@ feature 'homepage' do
     fill_in 'user_image', with: 'https://students-gschool-production.s3.amazonaws.com/uploads/user/avatar/61/IMG_6029.JPG'
     click_button 'Register'
     click_on "alex's Dashboard"
-    expect(page).to have_content 'american airlines is the best, right @alex?'
+    expect(page).to have_content 'american airlines is the best, american airlines is the best, american airlines is the best, american airlines is the best, american airlines is the best, right @alex?'
     expect(page).to have_link 'cam'
   end
 
@@ -295,7 +295,7 @@ feature 'homepage' do
     click_on "cam's Dashboard"
     click_on 'Create rant'
     fill_in 'rant_title', with: 'airlines'
-    fill_in 'rant_content', with: 'american airlines is the best'
+    fill_in 'rant_content', with: 'american airlines is the best, american airlines is the best, american airlines is the best, american airlines is the best, american airlines is the best'
     click_on 'create rant'
   end
   def another_persons_rant
@@ -312,7 +312,7 @@ feature 'homepage' do
     click_on "alex's Dashboard"
     click_on 'Create rant'
     fill_in 'rant_title', with: 'food'
-    fill_in 'rant_content', with: 'greek food is the best'
+    fill_in 'rant_content', with: 'greek food is the best, greek food is the best, greek food is the best, greek food is the best, greek food is the best, greek food is the best, greek food is the best'
     click_on 'create rant'
   end
 end
