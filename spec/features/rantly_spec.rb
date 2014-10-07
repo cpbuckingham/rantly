@@ -109,7 +109,7 @@ feature 'homepage' do
     click_on "cam's Dashboard"
     click_on 'Create rant'
     fill_in 'rant_content', with: 'american airlines is the best'
-    click_on 'Create rants'
+    click_on 'create rant'
     expect(page).to have_content "Title can't be blank"
   end
 
@@ -118,7 +118,7 @@ feature 'homepage' do
     click_on "cam's Dashboard"
     click_on 'Create rant'
     fill_in 'rant_title', with: 'airlines'
-    click_on 'Create rants'
+    click_on 'create rant'
     expect(page).to have_content "Content can't be blank"
   end
 
@@ -244,7 +244,7 @@ feature 'homepage' do
     click_on 'Create rant'
     fill_in 'rant_title', with: 'markdown'
     fill_in 'rant_content', with: '##TEST'
-    click_on 'Create rants'
+    click_on 'create rant'
     expect(page).to have_content 'TEST'
   end
 
@@ -254,7 +254,7 @@ feature 'homepage' do
     click_on 'Create rant'
     fill_in 'rant_title', with: 'airlines'
     fill_in 'rant_content', with: 'american airlines is the best, right @alex?'
-    click_on 'Create rants'
+    click_on 'create rant'
     click_on 'Logout'
     click_link 'Join'
     fill_in 'user_username', with: 'alex'
@@ -296,7 +296,7 @@ feature 'homepage' do
     click_on 'Create rant'
     fill_in 'rant_title', with: 'airlines'
     fill_in 'rant_content', with: 'american airlines is the best'
-    click_on 'Create rants'
+    click_on 'create rant'
   end
   def another_persons_rant
     create_rant
@@ -313,6 +313,6 @@ feature 'homepage' do
     click_on 'Create rant'
     fill_in 'rant_title', with: 'food'
     fill_in 'rant_content', with: 'greek food is the best'
-    click_on 'Create rants'
+    click_on 'create rant'
   end
 end
