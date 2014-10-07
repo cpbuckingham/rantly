@@ -6,7 +6,7 @@ class FollowsController < ApplicationController
   end
 
   def create
-    @user = User.find(session[:user_id])
+    @user = current_user
     @follow = Follow.new(
       user_id: @user.id,
       follow_id: params[:id]

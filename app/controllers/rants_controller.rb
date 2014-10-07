@@ -4,6 +4,11 @@ class RantsController < ApplicationController
     @rant = Rant.new
   end
 
+  def show
+    @user = find_user
+    @rant = Rant.find(params[:id])
+  end
+
   def index
     @user = find_user
     @rant = Rant.order(:created_at).reverse_order.limit(3).where("user_id <> #{current_user.id}")
@@ -59,6 +64,14 @@ class RantsController < ApplicationController
   def find_user
     User.find(params[:user_id])
   end
+  def check_for_follow(user)
+    if user.present?
+      Follow.find_by(
+        follow_id: user.id,
+        user_id: current_user.id
+      )
+    end
+  end
 
-
+  helper_method :check_for_follow
 end

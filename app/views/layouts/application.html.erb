@@ -19,7 +19,12 @@
         <%= link_to "Logout", signout_path, class: "button-link" %>
     <% end %>
     </div>
-    <h11 style= "color: green;"><%=  "Rant.ly" %></h11>
+    <% if current_user == nil %>
+  <h11 style= "color: green;"><%=  "Rant.ly" %></h11>
+      <% else %>
+      <h11><%=link_to  "Rant.ly", root_path%></h11>
+    <%end%>
+
   </div>
 </header>
 <br>
