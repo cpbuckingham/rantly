@@ -4,4 +4,5 @@ class User < ActiveRecord::Base
   has_many :bios
   has_many :follows
   validates :username, :first_name, :last_name, :bio, :image, presence: true
+  validates :username, uniqueness: true
 end

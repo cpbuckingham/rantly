@@ -16,7 +16,6 @@ class RantsController < ApplicationController
     @rants = Rant.where(:user_id => session[:user_id])
     @follows = Follow.where(:user_id => session[:user_id])
     @mentioned = Rant.where('content LIKE ?',"%@"+"#{current_user.username}"+"%")
-
   end
 
   def create

@@ -14,7 +14,7 @@ feature 'homepage' do
 
   scenario 'can login' do
     user_login
-    expect(page).to have_content 'Hi, cam'
+    expect(page).to have_content 'cam'
   end
 
   scenario 'can logout' do
@@ -25,7 +25,8 @@ feature 'homepage' do
 
   scenario 'can edit user profile' do
     user_login
-    click_on 'Edit Profile'
+    click_on "cam's Dashboard"
+    click_link 'cam'
     fill_in 'user_username', with: 'cam'
     fill_in 'user_password', with: 'jam'
     fill_in 'user_first_name', with: 'cam'
@@ -107,7 +108,6 @@ feature 'homepage' do
   scenario 'rant errors with no title' do
     user_login
     click_on "cam's Dashboard"
-    click_on 'Create rant'
     fill_in 'rant_content', with: 'american airlines is the best'
     click_on 'create rant'
     expect(page).to have_content "Title can't be blank"
@@ -116,7 +116,6 @@ feature 'homepage' do
   scenario 'rant errors with no content' do
     user_login
     click_on "cam's Dashboard"
-    click_on 'Create rant'
     fill_in 'rant_title', with: 'airlines'
     click_on 'create rant'
     expect(page).to have_content "Content can't be blank"
@@ -241,7 +240,6 @@ feature 'homepage' do
   scenario 'markdown parser works' do
     user_login
     click_on "cam's Dashboard"
-    click_on 'Create rant'
     fill_in 'rant_title', with: 'markdown'
     fill_in 'rant_content', with: '##TEST'
     click_on 'create rant'
@@ -251,7 +249,6 @@ feature 'homepage' do
   scenario 'when a user is mentioned by another user, that user sees a section of rants where they are mentioned' do
     user_login
     click_on "cam's Dashboard"
-    click_on 'Create rant'
     fill_in 'rant_title', with: 'airlines'
     fill_in 'rant_content', with: 'american airlines is the best, american airlines is the best, american airlines is the best, american airlines is the best, american airlines is the best, right @alex?'
     click_on 'create rant'
@@ -293,7 +290,6 @@ feature 'homepage' do
   def create_rant
     user_login
     click_on "cam's Dashboard"
-    click_on 'Create rant'
     fill_in 'rant_title', with: 'airlines'
     fill_in 'rant_content', with: 'american airlines is the best, american airlines is the best, american airlines is the best, american airlines is the best, american airlines is the best'
     click_on 'create rant'
@@ -310,7 +306,6 @@ feature 'homepage' do
     fill_in 'user_image', with: 'https://students-gschool-production.s3.amazonaws.com/uploads/user/avatar/61/IMG_6029.JPG'
     click_button 'Register'
     click_on "alex's Dashboard"
-    click_on 'Create rant'
     fill_in 'rant_title', with: 'food'
     fill_in 'rant_content', with: 'greek food is the best, greek food is the best, greek food is the best, greek food is the best, greek food is the best, greek food is the best, greek food is the best'
     click_on 'create rant'
