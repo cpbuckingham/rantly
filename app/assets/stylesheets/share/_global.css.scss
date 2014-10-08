@@ -14,6 +14,9 @@
     clear: both;
   }
 }
+a{
+  color: green;
+}
 h11 {
   a:link {
     color: green;
@@ -72,6 +75,24 @@ header {
   background: #e9e9e9;
   text-decoration: none;
   color:black;
+}
+.nav-link {
+font-size:15px;
+float: left;
+margin-right: 40px;
+margin-top: 10px;
+  a:link {
+    color: green;
+  }
+  a:visited {
+    color: green;
+  }
+  a:hover {
+    color: green;
+  }
+  a:active {
+    color: green;
+  }
 }
 .button {
   font-size:30px;
@@ -142,7 +163,15 @@ img {
   width: 80px;
 }
 .rants {
+  width: 90%;
+  border: 2px solid #ccc;
+  padding: 1em;
+  margin: 2em auto;
+  background: #efefef;
+}
+.rants_dashboard {
   width: 80%;
+  height: 750px;
   border: 2px solid #ccc;
   padding: 1em;
   margin: 2em auto;
@@ -263,6 +292,13 @@ $color: green;
   height: 50px;
   border-radius: 50%;
 }
+.wave2 {
+  position: absolute;
+  left: 0;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
 
 .wave:nth-child(1) {
   bottom: -10px;
@@ -345,4 +381,39 @@ $color: green;
   100% {
     transform: translate3d(0, 0, 0);
   }
+}
+
+.dash-flex-container {
+  display:flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-content: stretch;
+  align-items: stretch;
+}
+
+.dash-flex1 {
+  flex: 1;
+  border: 1px;
+  margin-top: 0px;
+  min-width: 350px;
+  padding: 0px 0px 0px 0px;
+  background-color: #414141;
+
+}
+.dash-flex2 {
+  flex: 3;
+  min-width: 300px;
+  background-color: white;
+  padding: 5px 20px 0px 20px;
+}
+.flex4 {
+  flex: 3 0 400px;
+  margin-left: 15px;
+  margin-right: 15px;
+  height: 60px;
+  width: 400px;
+  padding-top: 16px;
+  text-align: center;
+  /*border: thin solid black;*/
 }

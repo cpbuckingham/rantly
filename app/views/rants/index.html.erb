@@ -1,14 +1,48 @@
+<div class="dash-flex-container">
+  <div class="dash-flex1">
+      <div class="errors">
+        <% if @rant.errors.any? %>
+          <% @rant.errors.full_messages.each do |error| %>
+            <%= error %><br>
+          <% end %>
+        <% end %>
+      </div>
+      <div class="rants_dashboard">
+        <div id="rants_headers">
+        <img class="rant-image" style="width:90%;height:60%; text-align:center;" src=<%= current_user.image %>>
+        <br>
+          <br>
+          <br>
+        <h1 style="color: green;"><%=link_to current_user.username, edit_user_path(current_user.id)%></h1>
+          </div>
+        <%= form_for ([@user, @rant]), html: {class: "create_rant_form"} do |f| %>
+          <div>
+            <%= f.label :rant %>
+            <br>
+            <%= f.text_field :title, autofocus: true %>
+            <br>
+            <%= f.label "A rant about" %>
+            <br>
+            <%= f.text_area :content, autofocus: true, placeholder: "Rant about something or at someone", size: "20x20" %>
+          </div>
+          <div>
+            <br>
+            <%= f.submit "create rant", class: "button" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <div class="dash-flex2">
 <div id="rants_headers">
   <h1 style="color: green;">Latest Rants</h1>
 </div>
-<% @rant.each do |rant| %>
+<% @latest_rant.each do |rant| %>
   <div class="rants clearfix">
     <div id="rants_headers">
       <%= link_to rant.user.username, user_bios_path(rant.user.id) %>
       <img class="rant-image" style="width:30%;height:15%" src=<%= rant.user.image %>>
     </div>
     <br>
-
     <div id="rants_footers">
       <% unless rant.user.id == current_user.id %>
     <% if check_for_follow(rant.user) %>
@@ -39,9 +73,7 @@
 <% end %>
 <div id="rants_headers">
   <h1 style="color: green;">Your Rants</h1>
-  <%= link_to "Create rant", new_user_rant_path, class: "button-link" %>
 </div>
-<br>
 <% @rants.each do |rants| %>
   <div class="my_rants clearfix">
     <div class="indexing_rants">
@@ -61,7 +93,8 @@
     </div>
   </div>
 <% end %>
-<div id="rants_headers">
+      <br>
+      <div id="rants_headers">
   <h1 style="color: green;">Mentioned You</h1>
 </div>
 <% @mentioned.each do |mentions| %>
@@ -100,3 +133,6 @@
         </div>
         </div>
 <% end %>
+</div>
+    </div>
+  </div>

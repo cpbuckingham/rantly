@@ -18,7 +18,7 @@ class UsersController < ApplicationController
     )
     if @user.save
       session[:user_id] = @user.id
-      redirect_to root_path
+      redirect_to user_rants_path(@user.id)
       flash[:notice] = "Thank you for registering"
     else
       render :new
@@ -38,7 +38,7 @@ class UsersController < ApplicationController
       bio: params[:user][:bio],
       image: params[:user][:image],
       rant_frequency: params[:user][:rant_frequency])
-      redirect_to root_path
+      redirect_to user_rants_path(params[:id])
       flash[:notice] = "Your profile was successfully updated!"
     else
       render :edit

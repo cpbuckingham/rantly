@@ -14,33 +14,28 @@
       <%= link_to "Login", signin_path, class: "button-link" %>
       <%= link_to "Join", new_user_path, class: "button" %>
         <% else %>
-         <h11 style= "color: white; padding: 20px;">Hi, <%= current_user.username %></h11>
-        <%= link_to "Edit Profile", edit_user_path(current_user.id), class: "button-link" %>
-        <%= link_to "Logout", signout_path, class: "button-link" %>
-    <% end %>
+        <div class="nav-link">
+        <%= link_to "#{current_user.username}'s Dashboard" , user_rants_path(current_user.id)%> |
+        <%= link_to "Following" , user_follows_path(current_user.id) %> |
+        <%= link_to "Favorites" , user_favorites_path(current_user.id) %> |
+        <%= link_to "Search" , searches_path %>
+        </div>
+        <%= link_to "Logout", signout_path, class: "button" %>
+        <% end %>
     </div>
     <% if current_user == nil %>
   <h11 style= "color: green;"><%=  "Rant.ly" %></h11>
       <% else %>
-      <h11 style= "color: green; text-decoration-style: none"><%=link_to  "Rant.ly", root_path%></h11>
+      <h11 style= "color: green;"><%=link_to  "Rant.ly", root_path%></h11>
     <%end%>
-
   </div>
 </header>
 <br>
-  <br>
-<div id = "toolbar">
-  <% if current_user == nil %>
-<% else %>
-<%= link_to "#{current_user.username}'s Dashboard" , user_rants_path(current_user.id) %> <span class="green">|</span>
-<%= link_to "Following" , user_follows_path(current_user.id) %> <span class="green">|</span>
-<%= link_to "Favorites" , user_favorites_path(current_user.id) %> <span class="green">|</span>
-<%= link_to "Search" , searches_path %>
 </div>
-    <%end%>
-<br>
+</div>
   <div id="rants_headers">
 <div id="flash"><%= flash[:notice] %></div>
+    <br>
   </div>
 <main>
   <div class="container">
@@ -49,3 +44,5 @@
 </main>
 </body>
 </html>
+
+
