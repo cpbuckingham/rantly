@@ -42,11 +42,12 @@
       <%= link_to rant.user.username, user_bios_path(rant.user.id) %>
       <img class="rant-image" style="width:30%;height:15%" src=<%= rant.user.image %>>
     </div>
-    <br>
     <div id="rants_footers">
       <% unless rant.user.id == current_user.id %>
     <% if check_for_follow(rant.user) %>
-        <%= button_to "unfollow", user_follow_path(:id => rant.user.id, :user_id => @user.id), method: "delete" %>
+          <br>
+
+          <%= button_to "unfollow", user_follow_path(:id => rant.user.id, :user_id => @user.id), method: "delete" %>
       <% else %>
         <%= link_to "follow", user_follows_path(id: rant.user.id), :method => :post, class: "button-link" %>
       <% end %>
@@ -57,7 +58,7 @@
       <div id="boxrants">
         <%= link_to user_rant_path(rant.user.id, rant.id) do %>
           <dt> <%= rant.title %>:</dt>
-          <dt> <%= create_markdown(rant.content) %></dt>
+          <dt> <%= create_markdown(truncate(rant.content)) %></dt>
           </div>
         <% end %>
         <div id="rants_footers">
@@ -81,7 +82,7 @@
         <%= link_to user_rant_path(rants.user.id, rants.id) do %>
       <dt> <%= rants.title %>:
         <br>
-        <%= create_markdown(rants.content) %></dt>
+        <%= create_markdown(truncate(rants.content)) %></dt>
     </div>
           </div>
           <%end%>
@@ -118,7 +119,7 @@
       <div id="boxrants">
         <%= link_to user_rant_path(mentions.user.id, mentions.id) do %>
           <dt> <%= mentions.title %>:
-            <%= create_markdown(mentions.content) %></dt>
+            <%= create_markdown(truncate(mentions.content)) %></dt>
           <br>
           </div>
           </div>

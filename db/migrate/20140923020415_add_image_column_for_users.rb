@@ -3,3 +3,4 @@ class AddImageColumnForUsers < ActiveRecord::Migration
     add_column :users, :image, :string
   end
 end
+rails g migration ChangeLimitToRants
