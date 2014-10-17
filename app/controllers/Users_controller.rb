@@ -7,15 +7,7 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(
-      username: params[:user][:username],
-      password: params[:user][:password],
-      first_name: params[:user][:first_name],
-      last_name: params[:user][:last_name],
-      bio: params[:user][:bio],
-      image: params[:user][:image],
-      rant_frequency: params[:user][:rant_frequency]
-    )
+    @user = User.new(user_params)
     if @user.save
       session[:user_id] = @user.id
       redirect_to user_rants_path(@user.id)
@@ -30,18 +22,17 @@ class UsersController < ApplicationController
 
   def update
     @users = User.find(params[:id])
-    if @users.update(
-      username: params[:user][:username],
-      password: params[:user][:password],
-      first_name: params[:user][:first_name],
-      last_name: params[:user][:last_name],
-      bio: params[:user][:bio],
-      image: params[:user][:image],
-      rant_frequency: params[:user][:rant_frequency])
+    if @users.update(user_params)
       redirect_to user_rants_path(params[:id])
       flash[:notice] = "Your profile was successfully updated!"
     else
       render :edit
     end
+
+  end
+  private
+
+  def user_params
+    params.require(:user).permit(:username, :password, :first_name, :last_name, :bio, :image, :rant_frequency)
   end
 end
