@@ -17,7 +17,7 @@ class UserMailer < ActionMailer::Base
   def follow_ranted_email(user, rant)
     @users = user
     @ranter = rant.user.username
-    @rant_url = rant_url(rant.id)
+    @rant_url = user_rant_url(rant.user.id, rant.id)
     mail(to: @users, subject: "New Rant from #{@ranter}")
   end
 end

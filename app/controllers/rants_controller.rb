@@ -1,9 +1,13 @@
 class RantsController < ApplicationController
+
   def new
     @user = find_user
     @rant = Rant.new
   end
+
   def show
+    @comment = Comment.new
+    @comments = Comment.all
     @user = find_user
     @rant = Rant.find(params[:id])
   end
@@ -24,7 +28,8 @@ class RantsController < ApplicationController
                      user_id: params[:user_id])
     if @rant.save
       flash[:notice] = "Rant created successfully!"
-      UserMailer.follow_ranted_email(@follows, @rant).deliver unless !followers
+      followers = Rant.where(@user.follows)
+      UserMailer.follow_ranted_email(followers, @rant).deliver unless !followers
       redirect_to user_rants_path(@user.id)
     else
       @rant.errors

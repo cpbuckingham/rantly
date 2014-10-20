@@ -11,10 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141020172647) do
+ActiveRecord::Schema.define(version: 20141020212251) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "comments", force: true do |t|
+    t.text    "body"
+    t.integer "user_id"
+    t.integer "rant_id"
+  end
+
+  create_table "email_confirmations", force: true do |t|
+    t.integer "user_id"
+    t.string  "confirmation_token"
+  end
 
   create_table "favorites", force: true do |t|
     t.integer "user_id"
@@ -40,15 +51,16 @@ ActiveRecord::Schema.define(version: 20141020172647) do
   end
 
   create_table "users", force: true do |t|
-    t.string "username"
-    t.string "password"
-    t.string "password_digest"
-    t.string "first_name"
-    t.string "last_name"
-    t.string "bio"
-    t.string "rant_frequency"
-    t.string "image"
-    t.string "email"
+    t.string  "username"
+    t.string  "password"
+    t.string  "password_digest"
+    t.string  "first_name"
+    t.string  "last_name"
+    t.string  "bio"
+    t.string  "rant_frequency"
+    t.string  "image"
+    t.string  "email"
+    t.boolean "email_is_confirmed", default: false
   end
 
 end

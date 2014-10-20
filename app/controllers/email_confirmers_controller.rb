@@ -13,7 +13,7 @@ class EmailConfirmersController < ApplicationController
       if user.save!
         email_confirmer.destroy
         flash[:notice] = "Thanks for confirming your email.  Please login"
-        redirect_to login_path
+        redirect_to signin_path
       end
     end
   end

@@ -27,3 +27,21 @@
     <% end %>
   </div>
 </div>
+
+  <div id="rants_headers">
+    <%= form_for @comment, url: rant_comments_path, html: {class: "create_comment_form"} do |f| %>
+      <br>
+      <%= f.label :comment %>
+      <br>
+      <br>
+      <%= f.text_field :body, size: "30x10" %>
+      <br>
+      <br>
+      <%= f.submit "create comment" %>
+    <% end %>
+  </div>
+<div id="boxrants">
+  <% @comments.each do |rant| %>
+    <%= rant.comments %>
+  <% end %>
+</div>
