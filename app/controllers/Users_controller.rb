@@ -12,6 +12,10 @@ class UsersController < ApplicationController
       session[:user_id] = @user.id
       redirect_to user_rants_path(@user.id)
       flash[:notice] = "Thank you for registering"
+      UserMailer.welcome_email(@user, login_url).deliver
+      confirmation_token = EmailConfirmer.set_confirmation_token(@user)
+      UserMailer.confirmation_email(@user, email_confirmation_url(confirmation_token)).deliver
+      redirect_to root_path
     else
       render :new
     end
@@ -33,6 +37,6 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:username, :password, :first_name, :last_name, :bio, :image, :rant_frequency)
+    params.require(:user).permit(:username, :password, :first_name, :last_name, :email, :bio, :image, :rant_frequency)
   end
 end

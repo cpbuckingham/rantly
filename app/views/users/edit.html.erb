@@ -36,6 +36,12 @@
       <br>
 
       <div>
+        <%= f.label :email %>
+        <%= f.text_field :email, value: @users.email %>
+      </div>
+      <br>
+
+      <div>
         <%= f.label :bio %>
         <%= f.text_area :bio, :size => "30x10", value: @users.bio %>
       </div>
