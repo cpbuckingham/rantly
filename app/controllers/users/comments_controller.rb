@@ -2,7 +2,7 @@ module Users
   class CommentsController < ApplicationController
     def create
       @user = User.find(params[:user_id])
-      @comment = @user.comments.new(allowed_params.merge(user_id: params[:user_id]))
+      @comment = @user.comments.new(allowed_params.merge(:user_id => current_user.id))
       if @comment.save
         redirect_to user_bios_path(@user)
       else

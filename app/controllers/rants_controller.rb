@@ -7,8 +7,8 @@ class RantsController < ApplicationController
 
   def show
     @comment = Comment.new
-    @comments = Comment.all
     @user = find_user
+    @comments = Comment.where(:user_id => @user)
     @rant = Rant.find(params[:id])
   end
 

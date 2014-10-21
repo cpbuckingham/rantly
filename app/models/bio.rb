@@ -13,7 +13,7 @@ class Bio
   end
 
   def user_comments
-    @comments ||= Comment.where(:user_id => @user.id).reverse
+    @comments ||= Comment.where(:commentable_id => @user.id, :commentable_type => "User").reverse
   end
 
   def user_follows
