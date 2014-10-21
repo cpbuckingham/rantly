@@ -13,7 +13,9 @@ class Bio
   end
 
   def user_comments
-    @comments ||= Comment.where(:commentable_id => @user.id, :commentable_type => "User").reverse
+    @comments ||= Comment.where(:commentable_id => @user.id, :commentable_type => "User").sort_by do |comment|
+      comment.created_at
+    end.reverse
   end
 
   def user_follows

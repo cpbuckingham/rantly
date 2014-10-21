@@ -4,6 +4,7 @@ class CreateCommentsTable < ActiveRecord::Migration
       t.text :body
       t.integer :user_id
       t.references :commentable, polymorphic: true
+      t.timestamps
     end
   end
 end

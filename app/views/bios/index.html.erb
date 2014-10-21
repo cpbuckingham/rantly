@@ -51,9 +51,8 @@
 <div id="rants_headers">
   <%= form_for @bio.new_comment, url: user_comments_path(@user), html: {class: "create_comment_form"} do |f| %>
     <br>
-    <%= f.label :comment %>
     <br>
-    <%= f.text_field :body, size: "30x10" %>
+    <%= f.text_field :body, size: "30x10", placeholder: "Comments for #{@user.username}" %>
     <br>
     <br>
     <%= f.submit "create comment" %>

@@ -17,10 +17,12 @@ ActiveRecord::Schema.define(version: 20141020212251) do
   enable_extension "plpgsql"
 
   create_table "comments", force: true do |t|
-    t.text    "body"
-    t.integer "user_id"
-    t.integer "commentable_id"
-    t.string  "commentable_type"
+    t.text     "body"
+    t.integer  "user_id"
+    t.integer  "commentable_id"
+    t.string   "commentable_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "email_confirmations", force: true do |t|
