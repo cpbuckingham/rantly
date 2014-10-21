@@ -1,6 +1,6 @@
 <div id="rants_headers">
-  <h1 style="color: green;"><%= @user.username %></h1>
-  <% unless @user.id == current_user.id %>
+  <h1 style="color: green;"><%= @bio.user.username %></h1>
+  <% unless @bio.user.id == current_user.id %>
     <% if check_for_follow(@user) %>
       <%= button_to "unfollow", user_follow_path(:id => @user.id, :user_id => current_user.id), method: "delete" %>
     <% else %>
@@ -10,10 +10,10 @@
 </div>
 <br>
 <div class="my_rants clearfix">
-  <dt>Last name: <%= @user.last_name %></dt>
+  <dt>Last name: <%= @bio.user.last_name %></dt>
   <br>
   <br>
-  <dt>Bio: <%= @user.bio %></dt>
+  <dt>Bio: <%= @bio.user.bio %></dt>
   <br>
   <br>
   <dt>How often they rant: <%= @user.rant_frequency %></dt>
@@ -25,7 +25,7 @@
 
   <h1 style="color: green;"><%= @user.username %>'s rants</h1>
 </div>
-<% @rants.each do |rant| %>
+<% @bio.user_rants.each do |rant| %>
   <div class="rants">
     <div id="rants_headers">
     </div>
@@ -48,23 +48,28 @@
     </div>
   </div>
 <% end %>
-  <div id="rants_headers">
-    <%= form_for @comment, url: user_comments_path(@user.id), html: {class: "create_comment_form"} do |f| %>
-      <br>
-      <%= f.label :comment %>
-      <br>
-      <%= f.text_field :body, size: "30x10" %>
-      <br>
-      <br>
-      <%= f.submit "create comment" %>
-    <% end %>
-  </div>
-<div id="boxrants">
-  <%if @comments != nil %>
-  <% @comments.each do |comment| %>
-  <%= comment.body %>
-      <%end%>
-  <%end%>
+<div id="rants_headers">
+  <%= form_for @bio.new_comment, url: user_comments_path(@user), html: {class: "create_comment_form"} do |f| %>
+    <br>
+    <%= f.label :comment %>
+    <br>
+    <%= f.text_field :body, size: "30x10" %>
+    <br>
+    <br>
+    <%= f.submit "create comment" %>
+  <% end %>
 </div>
-<br>
-<br>
+  <% if @bio.user_comments != nil %>
+    <% @bio.user_comments.each do |comment| %>
+      <div class="my_rants clearfix">
+        <div class="indexing_rants">
+          <div id="boxrants">
+            <br>
+            <%= comment.body %>
+          </div>
+          </div>
+      </div>
+    <% end %>
+  <% end %>
+  <br>
+  <br>

@@ -6,19 +6,20 @@ Rails.application.routes.draw do
   resources :users do
     resources :bios, only: :index
     resources :favorites
+    resources :comments, only: :create, module: "users"
+    resources :follows
 
   end
   resources :searches, only: :index
 
-  resources :users do
-  resources :follows
-  end
   resources :rants do
-    resources :comments, only: :create
+    resources :comments, only: :create, module: "rants"
+
   end
-  resources :users do
-    resources :comments, only: :create
-  end
+
+
+
+
 
   get "signin" => "sessions#new"
   post "signin" => "sessions#create"

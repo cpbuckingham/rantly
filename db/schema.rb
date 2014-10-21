@@ -19,7 +19,8 @@ ActiveRecord::Schema.define(version: 20141020212251) do
   create_table "comments", force: true do |t|
     t.text    "body"
     t.integer "user_id"
-    t.integer "rant_id"
+    t.integer "commentable_id"
+    t.string  "commentable_type"
   end
 
   create_table "email_confirmations", force: true do |t|

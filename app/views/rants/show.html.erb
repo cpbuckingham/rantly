@@ -28,20 +28,28 @@
   </div>
 </div>
 
-  <div id="rants_headers">
-    <%= form_for @comment, url: rant_comments_path, html: {class: "create_comment_form"} do |f| %>
-      <br>
-      <%= f.label :comment %>
-      <br>
-      <br>
-      <%= f.text_field :body, size: "30x10" %>
-      <br>
-      <br>
-      <%= f.submit "create comment" %>
-    <% end %>
-  </div>
-<div id="boxrants">
-  <% @comments.each do |rant| %>
-    <%= rant.comments %>
+<div id="rants_headers">
+  <%= form_for @comment, url: rant_comments_path(@user, @rant), html: {class: "create_comment_form"} do |f| %>
+    <br>
+    <%= f.label :comment %>
+    <br>
+    <%= f.text_field :body, size: "30x10" %>
+    <br>
+    <br>
+    <%= f.submit "create comment" %>
   <% end %>
 </div>
+<% if @comments != nil %>
+  <% @comments.each do |comment| %>
+    <div class="my_rants clearfix">
+      <div class="indexing_rants">
+        <div id="boxrants">
+          <br>
+          <%= comment.body %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+<% end %>
+<br>
+<br>
