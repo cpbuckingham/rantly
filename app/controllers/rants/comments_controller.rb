@@ -3,12 +3,10 @@ module Rants
     def create
       @user = User.find_by(params[:user_id])
       @rant = Rant.find(params[:rant_id])
-      @rant.comments.create(allowed_params.merge(user_id: params[:user_id]))
-      if @rant.comments.save
-        @comments = Comment.all
-        redirect_to user_rant_path(@user.id, @rant.id)
+      @comments = @rant.comments.create(allowed_params.merge(:user_id => current_user.id))
+      if @comments.save
+        redirect_to :back
       else
-        @bio = Bio.new(@user)
         render '/rants/show'
       end
 
@@ -20,5 +18,16 @@ module Rants
       params.require(:comment).permit(:body)
     end
 
+
+    def check_for_follow(user)
+      if user.present?
+        Follow.find_by(
+          follow_id: user.id,
+          user_id: current_user.id
+        )
+      end
+    end
+
+    helper_method :check_for_follow
   end
 end

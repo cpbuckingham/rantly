@@ -14,7 +14,6 @@ Rails.application.routes.draw do
 
   resources :rants do
     resources :comments, only: :create, module: "rants"
-
   end
 
 

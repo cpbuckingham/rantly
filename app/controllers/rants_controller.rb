@@ -8,8 +8,10 @@ class RantsController < ApplicationController
   def show
     @comment = Comment.new
     @user = find_user
-    @comments = Comment.where(:user_id => @user)
     @rant = Rant.find(params[:id])
+    @comments = Comment.where(:commentable_id => @rant.id ).sort_by do |comment|
+      comment[:created_at]
+    end.reverse
   end
 
   def index
