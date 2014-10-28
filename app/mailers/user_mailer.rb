@@ -1,5 +1,5 @@
 class UserMailer < ActionMailer::Base
-  default from: 'notfiy-no-reply@rantly.com'
+  default from: 'notify-no-reply@rantly.com'
 
   def welcome_email(user, login_url)
     @user = user
