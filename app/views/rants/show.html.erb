@@ -20,7 +20,10 @@
   </div>
   <br>
   <div id="rants_footers">
-    <a href="https://twitter.com/share" data-via = <%=@rant.user.username%>>Tweet</a> | |
+    <% unless @rant.user_id == current_user.id %>
+  <%= link_to "Spam", spam_path(@rant), class: "spam-button-link" %>
+      <% end %>
+    <a href="https://twitter.com/share" data-via = <%=@rant.user.username%> class = 'tweet-button-link'>Tweet</a> | |
     <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
     <% favorite = Favorite.where(rant_id: @rant.id, user_id: current_user.id).first %>
     <% if !favorite %>
