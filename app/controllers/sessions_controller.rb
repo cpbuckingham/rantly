@@ -14,10 +14,12 @@ class SessionsController < ApplicationController
         session[:user_id] = @user.id
         redirect_to user_rants_path(@user.id)
       else
+        @user = User.new
         flash.now[:notice] = "You must confirm your email prior to logging in.  Please see your confirmation email and follow the instructions."
         render :new
       end
     else
+      @user = User.new
       flash.now[:notice] = "Invalid username or password"
       render :new
     end

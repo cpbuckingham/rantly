@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 gem 'pg'
 gem 'bcrypt', '~> 3.1.7'
 gem 'compass-rails', '~> 1.1.7'
+gem 'pry-rails'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
