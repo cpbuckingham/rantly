@@ -21,6 +21,6 @@ test:
   <<: *default
   database: rantly_test
 
-  prodcution:
+  production:
     <<: *default
     database: rantly_production

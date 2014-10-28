@@ -9,8 +9,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      session[:user_id] = @user.id
-      redirect_to user_rants_path(@user.id)
+      redirect_to root_path
       flash[:notice] = "Thank you for registering"
       UserMailer.welcome_email(@user, signin_url).deliver
       confirmation_token = EmailConfirmer.set_confirmation_token(@user)

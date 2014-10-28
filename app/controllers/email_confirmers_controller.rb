@@ -17,5 +17,4 @@ class EmailConfirmersController < ApplicationController
       end
     end
   end
-
 end
