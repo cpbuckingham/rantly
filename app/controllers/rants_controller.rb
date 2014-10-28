@@ -17,7 +17,7 @@ class RantsController < ApplicationController
   def index
     @rant = Rant.new
     @user = find_user
-    @latest_rant = Rant.order(:created_at).reverse_order.limit(3).where("user_id <> #{current_user.id}")
+    @latest_rant = Rant.all_except_spam_and_current_user(current_user)
     @rants = Rant.where(:user_id => session[:user_id])
     @follows = Follow.where(:user_id => session[:user_id])
     @mentioned = Rant.where('content LIKE ?',"%@"+"#{current_user.username}"+"%")

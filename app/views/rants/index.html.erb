@@ -1,139 +1,148 @@
 <div class="dash-flex-container">
   <div class="dash-flex1">
-      <div class="errors">
-        <% if @rant.errors.any? %>
-          <% @rant.errors.full_messages.each do |error| %>
-            <%= error %><br>
-          <% end %>
+    <div class="errors">
+      <% if @rant.errors.any? %>
+        <% @rant.errors.full_messages.each do |error| %>
+          <%= error %>
+          <br>
         <% end %>
-      </div>
-      <div class="rants_dashboard">
-        <div id="rants_headers">
+      <% end %>
+    </div>
+    <div class="rants_dashboard">
+      <div id="rants_headers">
         <img class="rant-image" style="width:90%;height:60%; text-align:center;" src=<%= current_user.image %>>
         <br>
-          <br>
-          <br>
-        <h1 style="color: green;"><%=link_to current_user.username, edit_user_path(current_user.id)%></h1>
-          </div>
-        <%= form_for ([@user, @rant]), html: {class: "create_rant_form"} do |f| %>
-          <div>
-            <%= f.label :rant %>
-            <br>
-            <%= f.text_field :title, autofocus: true %>
-            <br>
-            <%= f.label "A rant about" %>
-            <br>
-            <%= f.text_area :content, autofocus: true, placeholder: "Rant about something or at someone", size: "20x20" %>
-          </div>
-          <div>
-            <br>
-            <%= f.submit "create rant", class: "button" %>
-          </div>
-        <% end %>
-      </div>
-    </div>
-    <div class="dash-flex2">
-<div id="rants_headers">
-  <h1 style="color: green;">Latest Rants</h1>
-</div>
-<% @latest_rant.each do |rant| %>
-  <div class="rants clearfix">
-    <div id="rants_headers">
-      <%= link_to rant.user.username, user_bios_path(rant.user.id) %>
-      <img class="rant-image" style="width:30%;height:15%" src=<%= rant.user.image %>>
-    </div>
-    <div id="rants_footers">
-      <% unless rant.user.id == current_user.id %>
-    <% if check_for_follow(rant.user) %>
-          <br>
-
-          <%= button_to "unfollow", user_follow_path(:id => rant.user.id, :user_id => @user.id), method: "delete" %>
-      <% else %>
-        <%= link_to "follow", user_follows_path(id: rant.user.id), :method => :post, class: "button-link" %>
-      <% end %>
-      <% end %>
-      <br>
-    </div>
-    <div class="indexing_rants">
-      <div id="boxrants">
-        <%= link_to user_rant_path(rant.user.id, rant.id) do %>
-          <dt> <%= rant.title %>:</dt>
-          <dt> <%= create_markdown(truncate(rant.content)) %></dt>
-          </div>
-        <% end %>
-        <div id="rants_footers">
-          <% favorite = Favorite.where(rant_id: rant.id, user_id: @user.id).first %>
-          <% if !favorite %>
-            <%= link_to "Favorite", user_favorites_path(rant_id: rant.id), method: :POST %>  | <%= rant.favorites.count%>
-          <% else %>
-            <%= link_to "Unfavorite", user_favorite_path(@user, favorite), method: :DELETE %>  | <%= rant.favorites.count%>
-          <% end %>
-        </div>
-        </div>
-  </div>
-<% end %>
-<div id="rants_headers">
-  <h1 style="color: green;">Your Rants</h1>
-</div>
-<% @rants.each do |rants| %>
-  <div class="my_rants clearfix">
-    <div class="indexing_rants">
-      <div id="boxrants">
-        <%= link_to user_rant_path(rants.user.id, rants.id) do %>
-      <dt> <%= rants.title %>:
         <br>
-        <%= create_markdown(truncate(rants.content)) %></dt>
-    </div>
-          </div>
-          <%end%>
-    <div id="rants_buttons">
-      <%= link_to "edit", edit_user_rant_path(@user.id, rants.id), class: "button-link" %>
-      <br>
-      <br>
-      <%= button_to "delete", user_rant_path(@user, rants), method: "delete" %>
-    </div>
-  </div>
-<% end %>
-      <br>
-      <div id="rants_headers">
-  <h1 style="color: green;">Mentioned You</h1>
-</div>
-<% @mentioned.each do |mentions| %>
-  <div class="rants clearfix">
-    <div id="rants_headers">
-      <%= link_to mentions.user.username, user_bios_path(mentions.user.id) %>
-      <img class="rant-image" style="width:30%;height:15%" src=<%= mentions.user.image %>>
-    </div>
-    <br>
-    <div id="rants_footers">
-      <% unless mentions.user.id == current_user.id %>
-    <% if check_for_follow(mentions.user) %>
-        <%= button_to "unfollow", user_follow_path(:id => mentions.user.id, :user_id => @user.id), method: "delete" %>
-      <% else %>
-        <%= link_to "follow", user_follows_path(id: mentions.user.id), :method => :post, class: "button-link" %>
-      <% end %>
-      <% end %>
-      <br>
-    </div>
-    <div class="indexing_rants">
-      <div id="boxrants">
-        <%= link_to user_rant_path(mentions.user.id, mentions.id) do %>
-          <dt> <%= mentions.title %>:
-            <%= create_markdown(truncate(mentions.content)) %></dt>
+        <br>
+
+        <h1 style="color: green;"><%= link_to current_user.username, edit_user_path(current_user.id) %></h1>
+      </div>
+      <%= form_for ([@user, @rant]), html: {class: "create_rant_form"} do |f| %>
+        <div>
+          <%= f.label :rant %>
           <br>
-          </div>
-          </div>
-        <% end %>
-        <div id="rants_footers">
-          <% favorite = Favorite.where(rant_id: mentions.id, user_id: @user.id).first %>
-          <% if !favorite %>
-            <%= link_to "Favorite", user_favorites_path(rant_id: mentions.id), method: :post %>  | <%= mentions.favorites.count%>
-          <% else %>
-            <%= link_to "Unfavorite", user_favorite_path(@user, favorite), method: :delete %> | <%= mentions.favorites.count%>
-          <% end %>
+          <%= f.text_field :title, autofocus: true %>
+          <br>
+          <%= f.label "A rant about" %>
+          <br>
+          <%= f.text_area :content, autofocus: true, placeholder: "Rant about something or at someone", size: "20x20" %>
         </div>
+        <div>
+          <br>
+          <%= f.submit "create rant", class: "button" %>
         </div>
-<% end %>
-</div>
+      <% end %>
     </div>
   </div>
+  <div class="dash-flex2">
+    <div id="rants_headers">
+      <h1 style="color: green;">Latest Rants</h1>
+    </div>
+    <% @latest_rant.each do |rant| %>
+      <div class="rants clearfix">
+        <div id="rants_headers">
+          <%= link_to rant.user.username, user_bios_path(rant.user.id) %>
+          <br>
+          <br>
+          <img class="rant-image" style="width:30%;height:15%" src=<%= rant.user.image %>>
+        </div>
+        <div id="rants_footers">
+          <% unless rant.user.id == current_user.id %>
+            <% if check_for_follow(rant.user) %>
+              <br>
+              <%= button_to "unfollow", user_follow_path(:id => rant.user.id, :user_id => @user.id), method: "delete" %>
+            <% else %>
+              <%= link_to "follow", user_follows_path(id: rant.user.id), :method => :post, class: "button-link" %>
+            <% end %>
+          <% end %>
+          <br>
+        </div>
+        <div class="indexing_rants">
+          <div id="boxrants">
+            <%= link_to user_rant_path(rant.user.id, rant.id) do %>
+              <dt> <%= rant.title %>:</dt>
+              <dt> <%= create_markdown(truncate(rant.content)) %></dt>
+              </div>
+            <% end %>
+            <div id="rants_footers">
+              <% favorite = Favorite.where(rant_id: rant.id, user_id: @user.id).first %>
+              <% if !favorite %>
+                <%= link_to "Favorite", user_favorites_path(rant_id: rant.id), method: :POST %>
+                | <%= rant.favorites.count %>
+              <% else %>
+                <%= link_to "Unfavorite", user_favorite_path(@user, favorite), method: :DELETE %>
+                | <%= rant.favorites.count %>
+              <% end %>
+            </div>
+            </div>
+      </div>
+    <% end %>
+    <div id="rants_headers">
+      <h1 style="color: green;">Your Rants</h1>
+    </div>
+    <% @rants.each do |rants| %>
+      <div class="my_rants clearfix">
+        <div class="indexing_rants">
+          <div id="boxrants">
+            <%= link_to user_rant_path(rants.user.id, rants.id) do %>
+              <dt> <%= rants.title %>:
+                <br>
+                <%= create_markdown(truncate(rants.content)) %></dt>
+              </div>
+              </div>
+            <% end %>
+            <div id="rants_buttons">
+              <%= link_to "edit", edit_user_rant_path(@user.id, rants.id), class: "button-link" %>
+              <br>
+              <br>
+              <%= button_to "delete", user_rant_path(@user, rants), method: "delete" %>
+            </div>
+            </div>
+    <% end %>
+    <br>
+
+    <div id="rants_headers">
+      <h1 style="color: green;">Mentioned You</h1>
+    </div>
+    <% @mentioned.each do |mentions| %>
+      <div class="rants clearfix">
+        <div id="rants_headers">
+          <%= link_to mentions.user.username, user_bios_path(mentions.user.id) %>
+          <img class="rant-image" style="width:30%;height:15%" src=<%= mentions.user.image %>>
+        </div>
+        <br>
+
+        <div id="rants_footers">
+          <% unless mentions.user.id == current_user.id %>
+            <% if check_for_follow(mentions.user) %>
+              <%= button_to "unfollow", user_follow_path(:id => mentions.user.id, :user_id => @user.id), method: "delete" %>
+            <% else %>
+              <%= link_to "follow", user_follows_path(id: mentions.user.id), :method => :post, class: "button-link" %>
+            <% end %>
+          <% end %>
+          <br>
+        </div>
+        <div class="indexing_rants">
+          <div id="boxrants">
+            <%= link_to user_rant_path(mentions.user.id, mentions.id) do %>
+              <dt> <%= mentions.title %>:
+                <%= create_markdown(truncate(mentions.content)) %></dt>
+              <br>
+              </div>
+              </div>
+            <% end %>
+            <div id="rants_footers">
+              <% favorite = Favorite.where(rant_id: mentions.id, user_id: @user.id).first %>
+              <% if !favorite %>
+                <%= link_to "Favorite", user_favorites_path(rant_id: mentions.id), method: :post %>
+                | <%= mentions.favorites.count %>
+              <% else %>
+                <%= link_to "Unfavorite", user_favorite_path(@user, favorite), method: :delete %>
+                | <%= mentions.favorites.count %>
+              <% end %>
+            </div>
+            </div>
+    <% end %>
+  </div>
+</div>
+</div>
