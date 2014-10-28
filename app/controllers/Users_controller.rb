@@ -13,8 +13,8 @@ class UsersController < ApplicationController
       redirect_to user_rants_path(@user.id)
       flash[:notice] = "Thank you for registering"
       UserMailer.welcome_email(@user, signin_url).deliver
-      # confirmation_token = EmailConfirmer.set_confirmation_token(@user)
-      # UserMailer.confirmation_email(@user, email_confirmation_url(confirmation_token)).deliver
+      confirmation_token = EmailConfirmer.set_confirmation_token(@user)
+      UserMailer.confirmation_email(@user, email_confirmation_url(confirmation_token)).deliver
     else
       render :new
     end
