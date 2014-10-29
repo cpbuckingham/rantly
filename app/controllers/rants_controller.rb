@@ -9,7 +9,7 @@ class RantsController < ApplicationController
     @comment = Comment.new
     @user = find_user
     @rant = Rant.find(params[:id])
-    @comments = Comment.where(:commentable_id => @rant.id ).sort_by do |comment|
+    @comments = Comment.where(:commentable_id => @rant.id).sort_by do |comment|
       comment[:created_at]
     end.reverse
   end
@@ -20,7 +20,7 @@ class RantsController < ApplicationController
     @latest_rant = Rant.all_except_spam_and_current_user(current_user)
     @rants = Rant.where(:user_id => session[:user_id])
     @follows = Follow.where(:user_id => session[:user_id])
-    @mentioned = Rant.where('content LIKE ?',"%@"+"#{current_user.username}"+"%")
+    @mentioned = Rant.where('content LIKE ?', "%@"+"#{current_user.username}"+"%")
   end
 
   def create
@@ -30,12 +30,17 @@ class RantsController < ApplicationController
                      user_id: params[:user_id])
     if @rant.save
       flash[:notice] = "Rant created successfully!"
-      followers = @user.follows.map do |follow| follow.user.email end
-      UserMailer.follow_ranted_email(followers, @rant).deliver unless followers.nil?
-      redirect_to user_rants_path(User.first)
-    else
-      @rant.errors
-      render :new
+      followers = @user.follows.map do |follow|
+        follow.user.email
+      end
+      if followers != nil
+        UserMailer.follow_ranted_email(followers, @rant).deliver unless followers.nil?
+      end
+        redirect_to user_rants_path(User.first)
+      else
+        @rant.errors
+        render :new
+      
     end
   end
 
@@ -71,6 +76,7 @@ class RantsController < ApplicationController
   def find_user
     User.find(params[:user_id])
   end
+
   def check_for_follow(user)
     if user.present?
       Follow.find_by(
