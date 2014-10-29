@@ -16,7 +16,7 @@
   </div>
   <div class="indexing_rants">
     <dt> <%= @rant.title %>:</dt>
-    <dt> <%= create_markdown(@rant.content) %></dt>
+    <dt> <%= hashtag_search(create_markdown(@rant.content)) %></dt>
   </div>
   <br>
   <div id="rants_footers">

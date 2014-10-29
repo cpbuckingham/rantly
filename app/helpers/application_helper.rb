@@ -14,7 +14,18 @@ module ApplicationHelper
     content << capture(&block) if block_given? && text.length > length
     content
   end
-end
-end
+  end
+
+  def hashtag_search(text)
+    hashtag = text.scan(/#\w+/)
+    hashtag.each { |tag|
+      unless tag == '#39'
+        url = tag.gsub('#', '')
+        text.gsub!(tag, "<a href='/searches?utf8=✓&search=#{url}'>#{tag}</a>")
+      end
+    }
+    text.html_safe
+  end
+  end
 
 
