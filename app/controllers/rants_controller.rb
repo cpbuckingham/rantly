@@ -30,17 +30,16 @@ class RantsController < ApplicationController
                      user_id: params[:user_id])
     if @rant.save
       flash[:notice] = "Rant created successfully!"
-      followers = @user.follows.map do |follow|
-        follow.user.email
+      if @user.follows!= nil
+        @user.follows.map do |follow|
+          UserMailer.follow_ranted_email(follow.user.email, @rant).deliver unless followers.nil?
+        end
       end
-      if followers != nil
-        UserMailer.follow_ranted_email(followers, @rant).deliver unless followers.nil?
-      end
-        redirect_to user_rants_path(User.first)
-      else
-        @rant.errors
-        render :new
-      
+      redirect_to user_rants_path(User.first)
+    else
+      @rant.errors
+      render :new
+
     end
   end
 
