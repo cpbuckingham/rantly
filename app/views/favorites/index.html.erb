@@ -11,7 +11,7 @@
     <br>
 
     <div id="boxrants">
-      <%= link_to user_rant_path(fav.user.id, fav.id) do %>
+      <%= link_to user_rant_path(fav.user.id, fav.rant.id) do %>
         <%= fav.rant.title %>:
         <br>
         <%= create_markdown(fav.rant.content) %>
