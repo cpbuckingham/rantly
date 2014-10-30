@@ -1,6 +1,6 @@
 <div class="rants clearfix">
   <div id="rants_headers">
-    <img class="rant-image" style="width:30%;height:15%" src=<%= @rant.user.image %>>
+    <img class="rant-image" style="width:30%;height:15%" src=<%= @rant.user.avatar %>>
     <%= link_to @rant.user.username, user_bios_path(@rant.user.id) %>
   </div>
   <br>
@@ -52,7 +52,7 @@
     <div class="my_rants clearfix">
       <div class="indexing_rants">
         <div id="boxrants">
-          <img class="rant-image" style="width:20%;height:10%" src=<%= comment.user.image %>>
+          <img class="rant-image" style="width:20%;height:10%" src=<%= comment.user.avatar %>>
           <%= link_to comment.user.username, user_bios_path(comment.user.id) %>
           <br>
 

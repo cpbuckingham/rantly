@@ -1,7 +1,7 @@
 <div class="rants">
   <div id="rants_headers">
     <h1 style="color: green;">Update Profile</h1>
-    <img class="ranter-image" style="width:60%;height:40%" src=<%= @users.image %>>
+    <img class="ranter-image" style="width:60%;height:40%" src=<%= @users.avatar %>>
     <%= form_for @users, url: user_path, method: :patch, html: {class: "users-form"} do |f| %>
       <% f.object.errors.full_messages.each do |error| %>
         <div class="errors">
@@ -48,8 +48,8 @@
       <br>
 
       <div>
-        <%= f.label :image, "Profile Image URL" %>
-        <%= f.text_field :image, class: "wide-input", value: @users.image %>
+        <%= f.label :avatar, "Profile Image URL" %>
+        <%= f.file_field :avatar, class: "wide-input" %>
       </div>
       <br>
       <%= "How often do you rants?" %>
@@ -63,7 +63,6 @@
         <%= f.radio_button :rant_frequency, :monthly, value: @users.rant_frequency %>
       </div>
       <br>
-
       <div>
         <br>
         <%= f.submit "Update profile", class: "button" %>

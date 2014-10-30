@@ -31,6 +31,10 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'spring',        group: :development
 gem 'redcarpet'
 gem 'rails_12factor', '~> 0.0.2', group: :production
+gem 'carrierwave'
+gem 'aws-sdk'
+gem 'fog'
+gem 'figaro'
 
 
 

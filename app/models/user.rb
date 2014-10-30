@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
   has_many :bios
   has_many :follows
   has_many :comments, :as => :commentable
-  validates :username, :first_name, :last_name, :bio, :email, :image, presence: true
+  mount_uploader :avatar, AvatarUploader
+  validates :username, :first_name, :password_digest, :last_name, :bio, :email, presence: true
   validates :username, uniqueness: true
 end

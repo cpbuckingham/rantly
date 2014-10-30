@@ -5,7 +5,7 @@
 <% @follows.each do |following| %>
   <div class="rants clearfix">
     <div id="following_page">
-    <img class="ranter-image" style="width:45%;height:20%" src=<%= following.user.image %>>
+    <img class="ranter-image" style="width:45%;height:20%" src=<%= following.user.avatar %>>
     <%= link_to following.user.username, user_bios_path(following.user.id) %>
     </div>
     <div id="rant_button">

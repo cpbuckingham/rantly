@@ -10,11 +10,10 @@
     </div>
     <div class="rants_dashboard">
       <div id="rants_headers">
-        <img class="rant-image" style="width:90%;height:60%; text-align:center;" src=<%= current_user.image %>>
+        <img class="ranter-image" style="width:90%;height:60%; text-align:center"<%= image_tag current_user.avatar%>
         <br>
         <br>
         <br>
-
         <h1 style="color: green;"><%= link_to current_user.username, edit_user_path(current_user.id) %></h1>
       </div>
       <%= form_for ([@user, @rant]), html: {class: "create_rant_form"} do |f| %>
@@ -44,7 +43,7 @@
           <%= link_to rant.user.username, user_bios_path(rant.user.id) %>
           <br>
           <br>
-          <img class="rant-image" style="width:30%;height:15%" src=<%= rant.user.image %>>
+          <img class="ranter-image" style="width:20%;height:15%" src=<%= rant.user.avatar %>>
         </div>
         <div id="rants_footers">
           <% unless rant.user.id == current_user.id %>
@@ -108,10 +107,9 @@
       <div class="rants clearfix">
         <div id="rants_headers">
           <%= link_to mentions.user.username, user_bios_path(mentions.user.id) %>
-          <img class="rant-image" style="width:30%;height:15%" src=<%= mentions.user.image %>>
+          <img class="ranter-image" style="width:30%;height:15%" src=<%= mentions.user.avatar %>>
         </div>
         <br>
-
         <div id="rants_footers">
           <% unless mentions.user.id == current_user.id %>
             <% if check_for_follow(mentions.user) %>
