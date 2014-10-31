@@ -26,7 +26,7 @@
     <% if current_user == nil %>
   <h11 style= "color: green;"><%=  "Rant.ly" %></h11>
       <% else %>
-      <h11 style= "color: green;"><%=link_to  "Rant.ly", root_path%></h11>
+      <h11 style= "color: green;"><%=link_to  "Rant.ly", user_rants_path(current_user.id)%></h11>
     <%end%>
   </div>
 </header>
