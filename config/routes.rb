@@ -18,9 +18,7 @@ Rails.application.routes.draw do
 
   end
 
-
-
-
+  resources :admin, only: :show
 
 
   get "signin" => "sessions#new"

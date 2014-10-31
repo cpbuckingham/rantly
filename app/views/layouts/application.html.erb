@@ -3,38 +3,47 @@
 <head>
   <%= favicon_link_tag 'rant.jpg' %>
   <%= stylesheet_link_tag 'application', media: 'all' %>
+  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
   <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
 </head>
 <body>
 <header>
   <div class="container">
+    <% if current_user == nil %>
+      <div id="rantly">
+        <h11 style="color: green;"><%= "Rant.ly" %></h11>
+      </div>
+    <% else %>
+      <div id="rantly">
+        <h11 style="color: green;"><%= link_to "Rant.ly", user_rants_path(current_user.id) %></h11>
+    <% end %>
+    </div>
     <div id="logo">
-        <% if current_user == nil %>
-      <%= link_to "Login", signin_path, class: "button-link" %>
-      <%= link_to "Join", new_user_path, class: "button" %>
-        <% else %>
+      <% if current_user == nil %>
+        <%= link_to "Login", signin_path, class: "button-link" %>
+        <%= link_to "Join", new_user_path, class: "button" %>
+      <% else %>
         <div class="nav-link">
-        <%= link_to "#{current_user.username}'s Dashboard" , user_rants_path(current_user.id)%> |
-        <%= link_to "Following" , user_follows_path(current_user.id) %> |
-        <%= link_to "Favorites" , user_favorites_path(current_user.id) %> |
-        <%= link_to "Search" , searches_path %>
+          <%= link_to '<i class="fa fa-tachometer"></i>'.html_safe, user_rants_path(current_user.id), id: "cards_link" %>
+          <%= link_to '<i class="fa fa-users"></i>'.html_safe, user_follows_path(current_user.id), id: "cards_link" %>
+          <%= link_to '<i class="fa fa-thumbs-o-up"></i>'.html_safe, user_favorites_path(current_user.id), id: "cards_link" %>
+          <%= link_to '<i class="fa fa-binoculars"></i>'.html_safe, searches_path, id: "cards_link" %>
+          <% if current_user.admin %>
+            <%= link_to '<i class="fa fa-gavel"></i>'.html_safe, admin_path(current_user.id), id: "cards_link" %>
+          <% end %>
         </div>
         <%= link_to "Logout", signout_path, class: "button" %>
-        <% end %>
-    </div>
-    <% if current_user == nil %>
-  <h11 style= "color: green;"><%=  "Rant.ly" %></h11>
-      <% else %>
-      <h11 style= "color: green;"><%=link_to  "Rant.ly", user_rants_path(current_user.id)%></h11>
-    <%end%>
-  </div>
+        </div>
+      <% end %>
+      </div>
+  <div class="clearfix"></div>
 </header>
 </div>
 </div>
 <div class="dash-flex2">
   <div id="rants_headers">
-<div id="flash"><%= flash[:notice] %></div>
+    <div id="flash"><%= flash[:notice] %></div>
   </div>
 </div>
 <main>

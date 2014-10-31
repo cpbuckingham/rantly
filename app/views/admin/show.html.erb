@@ -1,0 +1,39 @@
+<div class="dash-flex-container">
+  <div class="dash-flex3">
+    <div id="rants_headers">
+      <h1 style="color: green;">Users</h1>
+    </div>
+    <% @ranters.each do |user| %>
+      <div class="rants clearfix">
+        <div id="rants_headers">
+          <%= link_to user.username, user_bios_path(user.id) %>
+        </div>
+        <br>
+      </div>
+    <% end %>
+  </div>
+  <div class="dash-flex4">
+    <div id="rants_headers">
+      <h1 style="color: green;">Rants</h1>
+    </div>
+    <% @rant.each do |rant| %>
+      <div id="boxrants">
+      <%= link_to user_rant_path(rant.user.id, rant.id) do %>
+        <div class="rants clearfix">
+          <div id="indexing_rants">
+            <img class="rant-image" style="width:30%;height:15%" src=<%= rant.user.avatar %>>
+
+              <%= rant.title %>:
+              <br>
+              <%= create_markdown(rant.content) %>
+            </div>
+
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+
+
+

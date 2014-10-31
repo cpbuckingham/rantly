@@ -61,12 +61,16 @@ header {
 #para {
   float: right;
   position: relative;
-  p{
+  p {
     color: white;
-    width:29rem;
+    width: 29rem;
   }
-
 }
+#rantly
+{
+  float:left;
+}
+
 .button-link {
   font-size:15px;
   padding: 2px;
@@ -80,7 +84,6 @@ header {
 font-size:15px;
 float: left;
 margin-right: 40px;
-margin-top: 10px;
   a:link {
     color: green;
   }
@@ -199,6 +202,12 @@ img {
     float: left;
     position: relative;
   }
+}
+#cards_link{
+  color: green;
+  font-size: 2em;
+  padding: 10px;
+
 }
 #boxrants{
   a:link {
@@ -407,6 +416,23 @@ $color: green;
   padding: 5px 20px 0px 20px;
 
 }
+.dash-flex3 {
+  flex: 2;
+  border: 1px;
+  margin-top: 0px;
+  min-width: 350px;
+  padding: 0px 0px 0px 0px;
+  background-color: white;
+
+}
+.dash-flex4 {
+  flex: 2;
+  min-width: 300px;
+  background-color: white;
+  padding: 5px 20px 0px 20px;
+
+}
+
 .flex4 {
   flex: 3 0 400px;
   margin-left: 15px;
