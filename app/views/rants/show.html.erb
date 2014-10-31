@@ -12,10 +12,9 @@
       <%= link_to "follow", user_follows_path(id: @rant.user.id), :method => :post, class: "button-link" %>
     <% end %>
     <% end %>
- <br>
   </div>
   <div class="indexing_rants">
-    <dt> <%= @rant.title %>:</dt>
+     <dt> <%= @rant.title %>:</dt>
     <dt> <%= hashtag_search(create_markdown(@rant.content)) %></dt>
   </div>
   <br>
@@ -23,8 +22,6 @@
     <% unless @rant.user_id == current_user.id %>
   <%= link_to "Spam", spam_path(@rant), class: "spam-button-link" %>
       <% end %>
-    <a href="https://twitter.com/share" data-via = <%=@rant.user.username%> class= 'tweet-button-link'>Tweet</a> | |
-    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
     <% favorite = Favorite.where(rant_id: @rant.id, user_id: current_user.id).first %>
     <% if !favorite %>
       <%= link_to "Favorite", user_favorites_path(rant_id: @rant.id), method: :POST %>  | <%= @rant.favorites.count%>
@@ -33,7 +30,9 @@
     <% end %>
     <br>
     <br>
-</div>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+    <a href="https://twitter.com/share" class="twitter-share-button" id="tweet" data-text="Check out the awesome rant <%= @rant.title %> here:">Tweet</a>
+  </div>
 </div>
 
 <div id="rants_headers">
