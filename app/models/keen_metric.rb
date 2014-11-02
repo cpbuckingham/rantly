@@ -15,7 +15,7 @@ class KeenMetric
     def self.find_logins_per_hour
         response = connection.get
         formatted = JSON.parse(response.body)
-        count = formatted["result"][0]
+        formatted["result"][0]
       end
 
 

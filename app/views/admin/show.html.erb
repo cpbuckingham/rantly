@@ -1,12 +1,18 @@
 <%= javascript_include_tag "//www.google.com/jsapi", "chartkick" %>
 
+<div id="rants_headers">
 <h1 style="color: green;">Rants Per Day</h1>
+  </div>
 <%= column_chart Rant.group_by_day(:created_at, range: 1.week.ago.midnight..Time.now, format: "%a-%e").count %>
 
+<div id="rants_headers">
 <h1 style="color: green;">Signups Per Day</h1>
+  </div>
 <%= column_chart User.group_by_day(:created_at, range: 1.week.ago.midnight..Time.now, format: "%a-%e").count %>
 
+<div id="rants_headers">
 <h1 style="color: green;">Logins Per Hour</h1>
+  </div>
 <%= column_chart KeenMetric.find_logins_per_hour %>
 
 <div class="dash-flex-container">
