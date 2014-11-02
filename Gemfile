@@ -35,6 +35,8 @@ gem 'carrierwave'
 gem 'aws-sdk'
 gem 'fog'
 gem 'figaro'
+gem 'keen'
+gem 'dotenv-rails'
 
 
 
