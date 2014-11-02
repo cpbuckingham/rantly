@@ -5,17 +5,17 @@ class AdminController < ApplicationController
   def show
     @ranters = User.all
     @rant = Rant.order(:created_at).reverse
-      end
+  end
 end
 
-  private
+private
 
-  def check_if_admin
-    unless current_user.admin
-      redirect_to "/"
-    end
-
+def check_if_admin
+  unless current_user.admin
+    redirect_to "/"
   end
+
+end
 
 
 

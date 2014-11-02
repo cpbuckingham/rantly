@@ -1,3 +1,14 @@
+<%= javascript_include_tag "//www.google.com/jsapi", "chartkick" %>
+
+<h1 style="color: green;">Rants Per Day</h1>
+<%= column_chart Rant.group_by_day(:created_at, range: 1.week.ago.midnight..Time.now, format: "%a-%e").count %>
+
+<h1 style="color: green;">Signups Per Day</h1>
+<%= column_chart User.group_by_day(:created_at, range: 1.week.ago.midnight..Time.now, format: "%a-%e").count %>
+
+<h1 style="color: green;">Logins Per Hour</h1>
+<%= column_chart KeenMetric.find_logins_per_hour %>
+
 <div class="dash-flex-container">
   <div class="dash-flex3">
     <div id="rants_headers">
@@ -18,10 +29,10 @@
     </div>
     <% @rant.each do |rant| %>
       <div id="boxrants">
-      <%= link_to user_rant_path(rant.user.id, rant.id) do %>
-        <div class="rants clearfix">
-          <div id="indexing_rants">
-            <img class="rant-image" style="width:30%;height:15%" src=<%= rant.user.avatar %>>
+        <%= link_to user_rant_path(rant.user.id, rant.id) do %>
+          <div class="rants clearfix">
+            <div id="indexing_rants">
+              <img class="rant-image" style="width:30%;height:15%" src=<%= rant.user.avatar %>>
 
               <%= rant.title %>:
               <br>
@@ -29,8 +40,8 @@
             </div>
 
           </div>
-        </div>
-      <% end %>
+          </div>
+        <% end %>
     <% end %>
   </div>
 </div>

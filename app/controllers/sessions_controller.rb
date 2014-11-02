@@ -12,6 +12,7 @@ class SessionsController < ApplicationController
     if @user && @user.authenticate(params[:user][:password])
       if @user.email_is_confirmed?
         session[:user_id] = @user.id
+        Keen.publish(:logins, {username: @user.username, login_date: DateTime.now()})
         redirect_to user_rants_path(@user.id)
       else
         @user = User.new
