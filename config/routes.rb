@@ -18,7 +18,7 @@ Rails.application.routes.draw do
 
   end
 
-  resources :admin, only: :show
+  resources :admin
 
 
   get "signin" => "sessions#new"
@@ -27,5 +27,7 @@ Rails.application.routes.draw do
 
   get "/confirm_email/:confirmation_token", to: "email_confirmers#destroy", as: "email_confirmation"
   get "/login_impersonator", to: "admin_sessions#new", as: "login_impersonator"
+
+
 
 end

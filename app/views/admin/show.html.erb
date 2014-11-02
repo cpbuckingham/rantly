@@ -14,19 +14,17 @@
 <h1 style="color: green;">Logins Per Hour</h1>
   </div>
 <%= column_chart KeenMetric.find_logins_per_hour %>
-
 <div class="dash-flex-container">
   <div class="dash-flex3">
     <div id="rants_headers">
       <h1 style="color: green;">Users</h1>
-    <%=link_to 'Sort by Most Rants ', params.merge(:rant => {:sort_column => 'username', :sort_direction => 'asc'}), :class => 'button-link'%>
+    <%=link_to 'Sort by Most Rants', admin_index_path(:id),:class => 'button-link'%>
     </div>
     <% @ranters.each do |user| %>
       <div class="rants clearfix">
         <div id="rants_headers">
           <%= link_to user.username, user_bios_path(user.id) %>
         </div>
-        <br>
       </div>
     <% end %>
   </div>

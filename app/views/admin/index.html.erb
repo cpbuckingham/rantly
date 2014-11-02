@@ -1,0 +1,15 @@
+
+<div id="follow_headers">
+  <h1 style="color: green;">Sorted by number of Rants</h1>
+</div>
+<% @rants.each do |rant| %>
+  <div class="rants clearfix">
+    <div id="following_page">
+      <img class="ranter-image" style="width:45%;height:20%" src=<%= rant.avatar %>>
+      <%= link_to rant.username, user_bios_path(rant.id) %>
+    </div>
+    <div id="rant_button">
+      <%= rant.rants.count %>
+    </div>
+  </div>
+<% end %>

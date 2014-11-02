@@ -6,6 +6,11 @@ class AdminController < ApplicationController
     @ranters = User.all
     @rant = Rant.order(:created_at).reverse
   end
+
+  def index
+    @ranters = User.all
+    @rants = @ranters.sort_by { |user| user.rants.count}.reverse
+  end
 end
 
 private
