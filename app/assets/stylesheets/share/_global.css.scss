@@ -421,7 +421,7 @@ $color: green;
   border: 1px;
   margin-top: 0px;
   min-width: 350px;
-  padding: 0px 0px 0px 0px;
+  padding: 5px 5px 5px 5px;
   background-color: white;
 
 }
@@ -430,6 +430,12 @@ $color: green;
   min-width: 300px;
   background-color: white;
   padding: 5px 20px 0px 20px;
+
+}
+.dash-flex5 {
+  flex: 4;
+  background-color: white;
+  padding: 5px 5px 5px 5px;
 
 }
 

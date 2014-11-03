@@ -8,4 +8,19 @@ class SpamController < ApplicationController
       redirect_to user_rants_path(@user.id)
     end
   end
+
+  def destroy
+      @user = find_user
+      @spam = Spam.find(params[:id])
+      @spam.destroy
+      flash[:notice] = "Marked as not spam!"
+      redirect_to admin(@user.id)
+    end
+  end
+
+
+private
+
+def find_user
+  User.find(params[:user_id])
 end

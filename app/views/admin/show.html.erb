@@ -1,24 +1,39 @@
 <%= javascript_include_tag "//www.google.com/jsapi", "chartkick" %>
-
-<div id="rants_headers">
-<h1 style="color: green;">Rants Per Day</h1>
+<div class="dash-flex-container">
+  <div class="dash-flex5">
+    <div id="rants_headers">
+      <div style=" border:1px solid black">
+        <h1 style="color: green;">Rants Per Day</h1>
+        <%= column_chart Rant.group_by_day(:created_at, range: 1.week.ago.midnight..Time.now, format: "%a-%e").count %>
+      </div>
+    </div>
   </div>
-<%= column_chart Rant.group_by_day(:created_at, range: 1.week.ago.midnight..Time.now, format: "%a-%e").count %>
+  <div class="dash-flex5">
+    <div id="rants_headers">
+      <div style=" border:1px solid black">
 
-<div id="rants_headers">
-<h1 style="color: green;">Signups Per Day</h1>
+        <h1 style="color: green;">Signups Per Day</h1>
+        <%= column_chart User.group_by_day(:created_at, range: 1.week.ago.midnight..Time.now, format: "%a-%e").count %>
+      </div>
+    </div>
   </div>
-<%= column_chart User.group_by_day(:created_at, range: 1.week.ago.midnight..Time.now, format: "%a-%e").count %>
+  <div class="dash-flex5">
+    <div id="rants_headers">
+      <div style=" border:1px solid black">
 
-<div id="rants_headers">
-<h1 style="color: green;">Logins Per Hour</h1>
+        <h1 style="color: green;">Logins Per Hour</h1>
+        <%= column_chart KeenMetric.find_logins_per_hour %>
+      </div>
+    </div>
   </div>
-<%= column_chart KeenMetric.find_logins_per_hour %>
+</div>
+</div>
+
 <div class="dash-flex-container">
   <div class="dash-flex3">
     <div id="rants_headers">
       <h1 style="color: green;">Users</h1>
-    <%=link_to 'Sort by Most Rants', admin_index_path(:id),:class => 'button-link'%>
+      <%= link_to 'Sort by Most Rants', admin_index_path(:id), :class => 'button-link' %>
     </div>
     <% @ranters.each do |user| %>
       <div class="rants clearfix">
@@ -27,8 +42,28 @@
         </div>
       </div>
     <% end %>
+    <div id="rants_headers">
+      <h1 style="color: green;">Spam</h1>
+    </div>
+    <% @spams.each do |spam| %>
+      <div id="boxrants">
+        <%= link_to user_rant_path(spam.user.id, spam.id) do %>
+          <div class="rants clearfix">
+            <div id="indexing_rants">
+              <img class="rant-image" style="width:30%;height:15%" src=<%= spam.rant.user.avatar %>>
+              <%= spam.rant.title %>:
+              <br>
+              <%= create_markdown(spam.rant.content) %>
+              <br>
+              <%= link_to "Not Spam", spam_path(spam.rant), method: :put, class: "button-link" %>
+              <%= link_to "Delete", spam_path(spam.rant), method: :delete, class: "spam-button-link" %>
+            </div>
+          </div>
+          </div>
+        <% end %>
+    <% end %>
   </div>
-  <div class="dash-flex4">
+  <div class="dash-flex3">
     <div id="rants_headers">
       <h1 style="color: green;">Rants</h1>
     </div>
@@ -38,7 +73,6 @@
           <div class="rants clearfix">
             <div id="indexing_rants">
               <img class="rant-image" style="width:30%;height:15%" src=<%= rant.user.avatar %>>
-
               <%= rant.title %>:
               <br>
               <%= create_markdown(rant.content) %>
@@ -50,6 +84,4 @@
     <% end %>
   </div>
 </div>
-
-
 

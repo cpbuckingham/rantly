@@ -5,6 +5,8 @@ class AdminController < ApplicationController
   def show
     @ranters = User.all
     @rant = Rant.order(:created_at).reverse
+    @spams = Spam.all
+
   end
 
   def index

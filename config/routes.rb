@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
   root "root#index"
   get "spam/:id" => "spam#create", as: :spam
- resources :users do
+
+  resources :users do
   resources :rants
  end
   resources :users do
