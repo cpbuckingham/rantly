@@ -66,8 +66,8 @@ class RantsController < ApplicationController
     @user = find_user
     @rant = Rant.find(params[:id])
     @rant.destroy
-    flash[:notice] = "Your rants was deleted!"
-    redirect_to user_rants_path(@user.id)
+    flash[:notice] = "Rant was deleted!"
+    redirect_to :back
   end
 
   private

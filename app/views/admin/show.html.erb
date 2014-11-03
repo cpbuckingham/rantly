@@ -55,8 +55,8 @@
               <br>
               <%= create_markdown(spam.rant.content) %>
               <br>
-              <%= link_to "Not Spam", spam_path(spam.rant), method: :put, class: "button-link" %>
-              <%= link_to "Delete", spam_path(spam.rant), method: :delete, class: "spam-button-link" %>
+              <%= link_to "Not Spam", spam_path(spam), method: :put, class: "button-link" %>
+              <%= link_to "Delete", user_rant_path(spam.user.id, spam.rant), method: :delete, class: "spam-button-link" %>
             </div>
           </div>
           </div>

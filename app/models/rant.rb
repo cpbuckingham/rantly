@@ -1,6 +1,6 @@
 class Rant < ActiveRecord::Base
   belongs_to :user
-has_many :spams
+has_many :spams, :dependent => :destroy
 has_many :favorites, dependent: :destroy
 has_many :comments, :as => :commentable
 validates :title, :content, presence: true

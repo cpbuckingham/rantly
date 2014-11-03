@@ -1,5 +1,5 @@
 class Spam < ActiveRecord::Base
-  belongs_to :rant, :dependent => :destroy
+  belongs_to :rant
   belongs_to :user
 
 
