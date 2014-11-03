@@ -38,8 +38,15 @@
     <% @ranters.each do |user| %>
       <div class="rants clearfix">
         <div id="rants_headers">
-          <%= link_to user.username, user_bios_path(user.id) %>
+          <%= link_to user.username, user_bios_path(user.id), class: "user_names" %>
         </div>
+        <% unless user.id == current_user.id %>
+          <% if user.disabled? %>
+            <%= link_to "Enable", disabled_path(user.id, :disabled => false), :method => :put, class: "enabled-button-link" %>
+          <% else %>
+            <%= link_to "Disable", disabled_path(user.id, :disabled => true), :method => :put, class: "disabled-button-link" %>
+          <% end %>
+        <% end %>
       </div>
     <% end %>
     <div id="rants_headers">
@@ -84,4 +91,5 @@
     <% end %>
   </div>
 </div>
+
 
