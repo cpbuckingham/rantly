@@ -31,6 +31,8 @@ Rails.application.routes.draw do
   get "/confirm_email/:confirmation_token", to: "email_confirmers#destroy", as: "email_confirmation"
   get "/login_impersonator", to: "admin_sessions#new", as: "login_impersonator"
 
+  get "/admin/impersonate/:user_id" => "admin#impersonate", as: :admin_impersonate
+  get "/admin/unimpersonate" => "admin#unimpersonate"
 
 
 end

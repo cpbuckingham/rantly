@@ -46,7 +46,8 @@
           <% else %>
             <%= link_to "Disable", disabled_path(user.id, :disabled => true), :method => :put, class: "disabled-button-link" %>
           <% end %>
-        <% end %>
+        <%= link_to "Impersonate", admin_impersonate_path(user.id), class: "impersonate-button-link" %>
+      <% end %>
       </div>
     <% end %>
     <div id="rants_headers">
@@ -63,7 +64,7 @@
               <%= create_markdown(spam.rant.content) %>
               <br>
               <%= link_to "Not Spam", spam_path(spam), method: :put, class: "button-link" %>
-              <%= link_to "Delete", user_rant_path(spam.user.id, spam.rant), method: :delete, class: "spam-button-link" %>
+              <%= link_to "Delete", user_rant_path(spam.user.id, spam.rant), :target => '_blank',  method: :delete, class: "spam-button-link" %>
             </div>
           </div>
           </div>

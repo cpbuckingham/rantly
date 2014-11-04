@@ -31,8 +31,11 @@
           <%= link_to '<i class="fa fa-binoculars"></i>'.html_safe, searches_path, id: "cards_link" %>
           <% if current_user.admin %>
             <%= link_to '<i class="fa fa-gavel"></i>'.html_safe, admin_path(current_user.id), id: "cards_link" %>
-          <% end %>
-        </div>
+            <%elsif session[:admin_id].present? %>
+                   <%= link_to '<i class="fa fa-eye"></i>'.html_safe, admin_path(:admin_id), id: "cards_link" %>
+      <% end %>
+
+      </div>
         <%= link_to "Logout", signout_path, class: "button" %>
         </div>
       <% end %>
