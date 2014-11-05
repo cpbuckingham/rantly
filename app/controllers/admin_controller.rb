@@ -29,8 +29,10 @@ class AdminController < ApplicationController
   end
 
   def filter
+    @ranters = User.all
+    @rant = Rant.order(:created_at).reverse
+    @spams = Spam.all
     @rants = Rant.all
-
     filter_by_end_date
     filter_by_start_date
 
@@ -49,16 +51,14 @@ class AdminController < ApplicationController
   def filter_by_start_date
     if params[:start_date] != ''
       date = Date.parse(params[:start_date])
-
-      @rants = @rants.where("created_at > '#{date}'")
+      @rants = @rants.where("created_at >= '#{date}'")
     end
   end
 
   def filter_by_end_date
     if params[:end_date] != ''
-      date = Date.parse(params[:end_date])
-
-      @rants = @rants.where("created_at < '#{date}'")
+      date = Date.parse(params[:end_date]) + 1
+      @rants = @rants.where("created_at <= '#{date}'")
     end
   end
 end

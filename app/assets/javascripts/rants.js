@@ -1,7 +1,7 @@
-  SITE.rants = {
+  SITE.admin = {
     init: function () {
     },
-  index: function () {
+  show: function () {
      $('#start_date').datepicker({format: "yyyy-mm-dd", orientation: 'top auto'});
 
         $('#end_date').datepicker({format: "yyyy-mm-dd", orientation: 'top auto'});

@@ -26,7 +26,7 @@ Rails.application.routes.draw do
   resources :admin
   resources :disabled, only: [:update]
 
-  post "/rants", to: 'rants#filter'
+  post "/admin/:user_id", to: 'admin#filter'
 
 
   get "signin" => "sessions#new"
