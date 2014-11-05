@@ -40,6 +40,8 @@ gem 'dotenv-rails'
 gem 'chartkick', '~> 1.3.2'
 gem 'groupdate'
 gem 'faraday', '~> 0.9.0'
+gem 'bootstrap-datepicker-rails'
+
 
 
 
