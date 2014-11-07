@@ -40,6 +40,7 @@ class RantsController < ApplicationController
       @rant.errors
       render :new
 
+
     end
   end
 

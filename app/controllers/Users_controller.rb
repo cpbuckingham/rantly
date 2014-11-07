@@ -12,6 +12,7 @@ class UsersController < ApplicationController
     if @user.save
       redirect_to root_path
       flash[:notice] = "Thank you for registering"
+      flash[:notice] = "Check your email to confirm your email address before logging on"
       UserMailer.welcome_email(@user).deliver
       confirmation_token = EmailConfirmer.set_confirmation_token(@user)
       UserMailer.confirmation_email(@user, email_confirmation_url(confirmation_token)).deliver
