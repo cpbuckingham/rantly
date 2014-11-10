@@ -9,7 +9,7 @@
 <div class="rants">
     <h1 style="color: green;">Create Rant</h1>
 <br>
-<%= form_for ([@user, @rant]), html: {class: "create_rant_form"} do |f| %>
+<%= form_for ([@user, @rant]), html: {class: "new_rant"} do |f| %>
   <div>
     <%= f.label :title %>
     <br>
@@ -21,7 +21,7 @@
   </div>
   <div>
     <br>
-    <%= f.submit "create rant" %>
+    <%= f.submit "create rant", class: "create_rant" %>
   </div>
 <% end %>
     </div>

@@ -28,7 +28,7 @@
         </div>
         <div>
           <br>
-          <%= f.submit "create rant", class: "button" %>
+          <%= f.submit "create rant", class: "button", "data-user-id" => current_user.id %>
         </div>
       <% end %>
     </div>
@@ -49,9 +49,9 @@
           <% unless rant.user.id == current_user.id %>
             <% if check_for_follow(rant.user) %>
               <br>
-              <%= button_to "unfollow", user_follow_path(:id => rant.user.id, :user_id => @user.id), method: "delete" %>
+              <%= button_to "unfollow", user_follow_path(:id => rant.user.id, :user_id => @user.id), class: "unfollow-button" %>
             <% else %>
-              <%= link_to "follow", user_follows_path(id: rant.user.id), :method => :post, class: "button-link" %>
+              <%= link_to "follow", user_follows_path(id: rant.user.id), class: "follow-button" %>
             <% end %>
           <% end %>
           <br>
@@ -115,9 +115,9 @@
         <div id="rants_footers">
           <% unless mentions.user.id == current_user.id %>
             <% if check_for_follow(mentions.user) %>
-              <%= button_to "unfollow", user_follow_path(:id => mentions.user.id, :user_id => @user.id), method: "delete" %>
+              <%= button_to "unfollow", user_follow_path(:id => mentions.user.id, :user_id => @user.id), class: "unfollow-button" %>
             <% else %>
-              <%= link_to "follow", user_follows_path(id: mentions.user.id), :method => :post, class: "button-link" %>
+              <%= link_to "follow", user_follows_path(id: mentions.user.id), class: "follow-button" %>
             <% end %>
           <% end %>
           <br>

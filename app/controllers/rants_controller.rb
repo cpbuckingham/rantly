@@ -28,6 +28,7 @@ class RantsController < ApplicationController
     @rant = Rant.new(title: params[:rant][:title],
                      content: params[:rant][:content],
                      user_id: params[:user_id])
+
     if @rant.save
       flash[:notice] = "Rant created successfully!"
       if @user.follows != nil
@@ -35,12 +36,10 @@ class RantsController < ApplicationController
           UserMailer.follow_ranted_email(follow.user.email, @rant).deliver
         end
       end
-      redirect_to user_rants_path(User.first)
+      render :nothing => true
     else
-      @rant.errors
-      render :new
-
-
+      errors = @rant.errors.full_messages
+      render :json => {errors: errors}
     end
   end
 

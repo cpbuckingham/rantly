@@ -12,7 +12,7 @@ class FollowsController < ApplicationController
       follow_id: params[:id]
     )
     if @follow.save
-      redirect_to user_follows_path
+      render :nothing => true
     else
       flash[:notice] = "You are already following this ranter"
     end
