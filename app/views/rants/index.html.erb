@@ -115,9 +115,9 @@
         <div id="rants_footers">
           <% unless mentions.user.id == current_user.id %>
             <% if check_for_follow(mentions.user) %>
-              <%= button_to "unfollow", user_follow_path(:id => mentions.user.id, :user_id => @user.id), class: "unfollow-button" %>
+              <%= button_to "unfollow", user_follow_path(:id => mentions.user.id, :user_id => @user.id), class: "unfollow-button", "data-id" => mentions.user.id %>
             <% else %>
-              <%= button_to "follow", user_follows_path(id: mentions.user.id), class: "follow-button" %>
+              <%= button_to "follow", user_follows_path(id: mentions.user.id), class: "follow-button", "data-id" => mentions.user.id%>
             <% end %>
           <% end %>
           <br>

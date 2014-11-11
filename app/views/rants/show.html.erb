@@ -7,10 +7,10 @@
   <div id="rants_footers">
     <% unless @rant.user.id == current_user.id %>
   <% if check_for_follow(@rant.user) %>
-      <%= button_to "unfollow", user_follow_path(:id => @rant.user.id, :user_id => @user.id), method: "delete" %>
-    <% else %>
-      <%= link_to "follow", user_follows_path(id: @rant.user.id), :method => :post, class: "button-link" %>
-    <% end %>
+      <%= button_to "unfollow", user_follow_path(:id => @rant.user.id, :user_id => @user.id), class: "unfollow-button", "data-id" => @rant.user.id %>
+  <% else %>
+      <%= link_to "follow", user_follows_path(id: @rant.user.id), class: "follow-button", "data-id" => @rant.user.id %>
+  <% end %>
     <% end %>
   </div>
   <div class="indexing_rants">

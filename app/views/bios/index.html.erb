@@ -2,9 +2,9 @@
   <h1 style="color: green;"><%= @bio.user.username %></h1>
   <% unless @bio.user.id == current_user.id %>
     <% if check_for_follow(@user) %>
-      <%= button_to "unfollow", user_follow_path(:id => @user.id, :user_id => current_user.id), method: "delete" %>
+      <%= button_to "unfollow", user_follow_path(:id => @user.id, :user_id => current_user.id), class: "unfollow-button", "data-id" => @user.id %>
     <% else %>
-      <%= link_to "Follow this Ranter", user_follows_path(:id => @user.id), :method => :POST, class: "button-link" %>
+      <%= link_to "Follow this Ranter", user_follows_path(:id => @user.id), class: "follow-button", "data-id" => @user.id %>
     <% end %>
   <% end %>
 </div>
@@ -58,20 +58,20 @@
     <%= f.submit "create comment" %>
   <% end %>
 </div>
-  <% if @bio.user_comments != nil %>
-    <% @bio.user_comments.each do |comment| %>
-      <div class="my_rants clearfix">
-        <div class="indexing_rants">
-          <div id="boxrants">
-              <img class="rant-image" style="width:20%;height:10%" src=<%= comment.user.avatar %>>
-              <%= link_to comment.user.username, user_bios_path(comment.user.id) %>
-            <br>
-            <%= comment.body %>
-          </div>
-          </div>
+<% if @bio.user_comments != nil %>
+  <% @bio.user_comments.each do |comment| %>
+    <div class="my_rants clearfix">
+      <div class="indexing_rants">
+        <div id="boxrants">
+          <img class="rant-image" style="width:20%;height:10%" src=<%= comment.user.avatar %>>
+          <%= link_to comment.user.username, user_bios_path(comment.user.id) %>
+          <br>
+          <%= comment.body %>
+        </div>
       </div>
-    <% end %>
+    </div>
   <% end %>
-  <br>
-  <br>
+<% end %>
+<br>
+<br>
 
