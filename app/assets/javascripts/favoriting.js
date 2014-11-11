@@ -1,31 +1,36 @@
 $(document).ready(function () {
-  $('.favorite-button').on('click', function () {
-    var userId = $(this).data('user');
-    var rantId = $(this).data('rant');
-    var favoriteCount = $(this).data('fav-count');
+
+  $('body').on('click', '.favorite-button', function (event) {
+    event.preventDefault();
+    var button = $(this);
+    var userId = button.data('user');
+    var rantId = button.data('rant');
 
     var toggleFavoriteButton = function (button) {
-      favoriteCount += 1;
-      button.empty().append(favoriteCount + ' - Unfavorite').removeClass('favorite-button')
+      button.empty().append(' Unfavorite').removeClass('favorite-button')
         .addClass('unfavorite-button')
     };
 
-    var promiseOfResult = $.get("/users/" + userId + "/rants/" + rantId + '/favorite');
-    promiseOfResult.success(toggleFavoriteButton($(this)));
+    var promiseOfResult = $.post("/users/" + userId + "/favorites", {rant_id: rantId});
+    promiseOfResult.success(function(data) {
+      button.data('fav', data.favorite_id);
+      toggleFavoriteButton(button);
+    });
   });
 
-  $('body').on('click', '.unfavorite-button', function () {
+  $('body').on('click', '.unfavorite-button', function (event) {
+    event.preventDefault();
     var userId = $(this).data('user');
-    var rantId = $(this).data('rant');
-    var favoriteCount = $(this).data('fav-count');
+    var favId = $(this).data('fav');
 
     var toggleUnfavoriteButton = function (button) {
-      button.empty().append(favoriteCount + ' - Favorite').removeClass('unfavorite-button')
+      button.empty().append('Favorite').removeClass('unfavorite-button')
         .addClass('favorite-button');
     };
-
-    var promiseOfResult = $.get("/users/" + userId + "/rants/" + rantId + "/unfavorite");
+    var promiseOfResult = $.ajax ({
+                                    url:  "/users/" + userId + "/favorites/" + favId,
+                                    type: "DELETE"});
     promiseOfResult.success(toggleUnfavoriteButton($(this)));
   });
-
 });
+

@@ -6,7 +6,7 @@ class FavoritesController < ApplicationController
     @favorite.user_id = @user
     @favorite.rant_id = params[:rant_id]
     @favorite.save!
-    render :nothing => true
+    render :json => {:favorite_id => @favorite.id}
   end
 
 
@@ -17,7 +17,7 @@ class FavoritesController < ApplicationController
 
   def destroy
     @user = current_user.id
-    @favorite = Favorite.where(id: params[:id], user_id: @user).first
+    @favorite = Favorite.find(params[:id])
     @favorite.destroy
     render :nothing => true
   end
