@@ -1,8 +1,8 @@
 $(document).ready(function () {
-  $('body').on('click', '.favorite-button', function () {
-    var userId = $(this).parents('.rant').first().data('user');
-    var rantId = $(this).parents('.rant').first().data('rant');
-    var favoriteCount = $(this).parents('.rant').first().data('fav-count');
+  $('.favorite-button').on('click', function () {
+    var userId = $(this).data('user');
+    var rantId = $(this).data('rant');
+    var favoriteCount = $(this).data('fav-count');
 
     var toggleFavoriteButton = function (button) {
       favoriteCount += 1;
@@ -15,9 +15,9 @@ $(document).ready(function () {
   });
 
   $('body').on('click', '.unfavorite-button', function () {
-    var userId = $(this).parents('.rant').first().data('user');
-    var rantId = $(this).parents('.rant').first().data('rant');
-    var favoriteCount = $(this).parents('.rant').first().data('fav-count');
+    var userId = $(this).data('user');
+    var rantId = $(this).data('rant');
+    var favoriteCount = $(this).data('fav-count');
 
     var toggleUnfavoriteButton = function (button) {
       button.empty().append(favoriteCount + ' - Favorite').removeClass('unfavorite-button')
