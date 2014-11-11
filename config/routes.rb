@@ -11,7 +11,6 @@ Rails.application.routes.draw do
     resources :favorites
     resources :comments, only: :create, module: "users"
     resources :follows
-
   end
   resources :searches, only: :index
 

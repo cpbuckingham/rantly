@@ -9,7 +9,7 @@ class FollowsController < ApplicationController
     @user = current_user
     @follow = Follow.new(
       user_id: @user.id,
-      follow_id: params[:id]
+      follow_id: params[:user_id]
     )
     if @follow.save
       render :nothing => true
@@ -19,10 +19,9 @@ class FollowsController < ApplicationController
   end
 
   def destroy
-    @user = User.find(params[:user_id])
-    @follow = Follow.find_by(:follow_id => params[:id])
+    @follow = Follow.find_by(:follow_id => params[:user_id], :user_id => current_user.id )
     @follow.destroy
-    redirect_to user_follows_path
+    render :nothing => true
   end
 
   private

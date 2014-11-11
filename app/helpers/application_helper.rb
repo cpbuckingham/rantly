@@ -26,6 +26,7 @@ module ApplicationHelper
     }
     text.html_safe
   end
+
   end
 
 

@@ -6,7 +6,7 @@ class FavoritesController < ApplicationController
     @favorite.user_id = @user
     @favorite.rant_id = params[:rant_id]
     @favorite.save!
-    redirect_to :back
+    render :nothing => true
   end
 
 
@@ -19,7 +19,7 @@ class FavoritesController < ApplicationController
     @user = current_user.id
     @favorite = Favorite.where(id: params[:id], user_id: @user).first
     @favorite.destroy
-    redirect_to :back
+    render :nothing => true
   end
   private
 
