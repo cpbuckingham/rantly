@@ -274,7 +274,6 @@ feature 'homepage' do
     fill_in 'user_first_name', with: 'cam'
     fill_in 'user_last_name', with: 'buckingham'
     fill_in 'user_bio', with:  'gschool'
-    fill_in 'user_image', with: 'https://students-gschool-production.s3.amazonaws.com/uploads/user/avatar/61/IMG_6029.JPG'
     click_button 'Register'
 
   end
